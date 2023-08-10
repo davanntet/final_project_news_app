@@ -9,22 +9,21 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3),(){
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context, '/staterpage');
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: CircleAvatar(
-          radius: 75,
-          backgroundImage: AssetImage('assets/images/logo.png'),
-        )
-      ),
-      
+          child: CircleAvatar(
+        radius: 75,
+        backgroundImage: AssetImage('assets/images/logo.png'),
+      )),
     );
   }
 }
