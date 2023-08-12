@@ -73,30 +73,35 @@ class SigninPage extends StatelessWidget {
                   ],
                 ),
               )),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              alignment: Alignment.centerRight,
-              child: InkWell(
-                onTap: (){
-                  Navigator.pushNamed(context, '/forgetpassword');
-                },
-                child: const Text(
-                  "Forgot Password?",
-                  textAlign: TextAlign.end,
-                  style: TextStyle(
-                      color: AppColors.blue,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14,
-                      decoration: TextDecoration.underline,
-                      decorationColor: AppColors.blue,
-                      decorationThickness: 2),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                alignment: Alignment.centerRight,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/forgetpassword');
+                  },
+                  child: const Text(
+                    "Forgot Password?",
+                    textAlign: TextAlign.end,
+                    style: TextStyle(
+                        color: AppColors.blue,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
+                        decoration: TextDecoration.underline,
+                        decorationColor: AppColors.blue,
+                        decorationThickness: 2),
+                  ),
                 ),
               ),
-            ),
               SizedBox(
                 height: 10,
               ),
-              ElevatedButton(onPressed: () {}, child: const Text("Sign in")),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/indexapp');
+                  },
+                  child: const Text("Sign in")
+              ),
               SizedBox(
                   height: 50,
                   child: Padding(

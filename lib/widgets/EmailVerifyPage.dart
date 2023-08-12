@@ -1,7 +1,6 @@
 import 'package:final_project_news_app/components/Form/ExpireTime.dart';
 import 'package:final_project_news_app/components/Form/PinInput.dart';
 import 'package:flutter/material.dart';
-import 'package:sms_otp_auto_verify/sms_otp_auto_verify.dart';
 class EmailVerifyPage extends StatelessWidget {
   const EmailVerifyPage({super.key});
 

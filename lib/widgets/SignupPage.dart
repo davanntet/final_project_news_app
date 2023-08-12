@@ -15,9 +15,6 @@ class SignUP extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          // focusColor: const Color(0xff4D6EFD),
-          // splashColor: const Color(0xff4D6EFD),
-          // hoverColor: const Color(0xff4D6EFD),
           highlightColor: const Color(0xff4D6EFD).withOpacity(0.1),
           icon: const Icon(
             Icons.arrow_back_ios,

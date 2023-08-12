@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:final_project_news_app/constraint/AppColors.dart';
 import 'package:final_project_news_app/routes/Routers.dart';
 import 'package:final_project_news_app/widgets/SplashPage.dart';
@@ -33,13 +35,49 @@ class MainApp extends StatelessWidget {
             color: AppColors.black,
           ),
           labelSmall: TextStyle(
-            fontSize: 22,
+            fontSize: 18,
             fontWeight: FontWeight.w500,
             color: AppColors.black,
           ),
           titleLarge: TextStyle(fontSize: 18, color: AppColors.grey),
           titleMedium: TextStyle(fontSize: 15, color: AppColors.grey),
           titleSmall: TextStyle(fontSize: 12, color: AppColors.grey),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            backgroundColor: AppColors.blue.withOpacity(0.1),
+            minimumSize: Size(80,32),
+            maximumSize: Size(110,35),
+            textStyle: TextStyle(fontSize: 12, color: AppColors.grey,fontWeight: FontWeight.w500),
+          ),
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: AppColors.blue,
+          selectedItemColor: AppColors.blue,
+          elevation: 0,
+          unselectedItemColor: AppColors.greyscale,
+          selectedLabelStyle: const TextStyle(fontSize: 14),
+          unselectedLabelStyle: const TextStyle(fontSize: 14),
+          enableFeedback: false,
+          type: BottomNavigationBarType.fixed,
+        ),
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: AppColors.white,
+          padding: const EdgeInsets.all(0),
+          elevation: 0,
+          height: 80,
+          shadowColor: AppColors.blue,
+          surfaceTintColor: AppColors.blue,
+        ),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          iconTheme: const IconThemeData(color: AppColors.white),
+          titleTextStyle: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+            color: AppColors.black,
+          ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
