@@ -9,9 +9,13 @@ import 'package:final_project_news_app/widgets/SigninPage.dart';
 import 'package:final_project_news_app/widgets/SignupPage.dart';
 import 'package:final_project_news_app/widgets/SplashPage.dart';
 import 'package:final_project_news_app/widgets/StarterPage.dart';
+import 'package:final_project_news_app/widgets/home/CommentHomePage.dart';
 import 'package:final_project_news_app/widgets/home/DetialHomePage.dart';
 import 'package:final_project_news_app/widgets/home/HomePage.dart';
+import 'package:final_project_news_app/widgets/search/NewRecommandation.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/search/TredingTopic.dart';
 
 class Routers{
  static Route<dynamic> getRoute (RouteSettings settings){
@@ -34,6 +38,12 @@ class Routers{
         return MaterialPageRoute(builder: (_)=> IndexApp());
       case '/detailhome':
         return MaterialPageRoute(builder: (_)=> DetailHomePage());
+      case '/comment':
+        return MaterialPageRoute(builder: (_)=> CommentHomePage());
+      case '/trendingtopic':
+        return MaterialPageRoute(builder: (_)=> TredingTopic());
+      case '/recommandation':
+        return MaterialPageRoute(builder: (_)=> NewRecommandation());
       default:
         return MaterialPageRoute(builder:(_)=> SplashPage());
     }

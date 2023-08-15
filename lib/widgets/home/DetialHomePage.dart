@@ -42,11 +42,7 @@ class DetailHomePage extends StatelessWidget {
                         onPressed: (){},
                         child: Text(
                           'UI Design',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.blue,
-                          ),
+                          style: Theme.of(context).textTheme.headlineMedium
                         ),
                       ),
                       Text(
@@ -153,16 +149,21 @@ class DetailHomePage extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Icon(
-                  Icons.comment,
-                  color: AppColors.grey,
+              InkWell(
+                onTap: (){
+                  Navigator.pushNamed(context, '/comment');
+                },
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Icon(
+                    Icons.comment,
+                    color: AppColors.grey,
+                  ),
                 ),
               ),
               Container(

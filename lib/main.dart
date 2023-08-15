@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:final_project_news_app/constraint/AppColors.dart';
 import 'package:final_project_news_app/routes/Routers.dart';
@@ -35,13 +34,43 @@ class MainApp extends StatelessWidget {
             color: AppColors.black,
           ),
           labelSmall: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.w500,
+            color: AppColors.black,
+          ),
+          displayLarge: TextStyle(
             fontSize: 18,
+            fontWeight: FontWeight.w500,
+            color: AppColors.black,
+          ),
+          displayMedium: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            color: AppColors.black,
+          ),
+          displaySmall: TextStyle(
+            fontSize: 14,
             fontWeight: FontWeight.w500,
             color: AppColors.black,
           ),
           titleLarge: TextStyle(fontSize: 18, color: AppColors.grey),
           titleMedium: TextStyle(fontSize: 15, color: AppColors.grey),
           titleSmall: TextStyle(fontSize: 12, color: AppColors.grey),
+          headlineMedium: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: AppColors.blue,
+          ),
+          headlineSmall: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: AppColors.blue,
+          ),
+          headlineLarge: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+            color: AppColors.blue,
+          ),
         ),
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
@@ -51,6 +80,7 @@ class MainApp extends StatelessWidget {
             textStyle: TextStyle(fontSize: 12, color: AppColors.grey,fontWeight: FontWeight.w500),
           ),
         ),
+
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: AppColors.blue,
           selectedItemColor: AppColors.blue,
@@ -73,8 +103,8 @@ class MainApp extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           iconTheme: const IconThemeData(color: AppColors.white),
-          titleTextStyle: const TextStyle(
-            fontSize: 18,
+          titleTextStyle:const TextStyle(
+            fontSize: 22,
             fontWeight: FontWeight.w500,
             color: AppColors.black,
           ),

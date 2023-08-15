@@ -57,7 +57,7 @@ class _IndexAppState extends State<IndexApp> {
                   width: 24,
                   height: 24
               ),
-              label: "Search",
+              label: "Explorer",
 
             ),
             BottomNavigationBarItem(

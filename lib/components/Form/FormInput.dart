@@ -1,4 +1,3 @@
-
 import 'package:final_project_news_app/constraint/AppColors.dart';
 import 'package:flutter/material.dart';
 
