@@ -1,7 +1,8 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 
-import '../components/Form/FormInput.dart';
-import '../constraint/AppColors.dart';
+import '../../components/Form/FormInput.dart';
+import '../../constraint/AppColors.dart';
 
 class SignUP extends StatelessWidget {
   SignUP({super.key});
@@ -71,7 +72,7 @@ class SignUP extends StatelessWidget {
                   ],
                 ),
               )),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ElevatedButton(
@@ -79,13 +80,13 @@ class SignUP extends StatelessWidget {
                     Navigator.pushNamed(context, '/createpassword');
                   },
                   child: const Text("Sign UP")),
-              SizedBox(
+              const SizedBox(
                   height: 50,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    padding: EdgeInsets.symmetric(horizontal: 25),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Expanded(
                             child: Divider(
                           color: AppColors.greyscale,
@@ -157,7 +158,7 @@ class SignUP extends StatelessWidget {
                       ))
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -167,14 +168,14 @@ class SignUP extends StatelessWidget {
                     "Already have an account?",
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   InkWell(
                       onTap: () {
                         Navigator.pushNamed(context, '/signin');
                       },
-                      child: Text(
+                      child: const Text(
                         "Sign in",
                         style: TextStyle(
                             color: AppColors.blue,

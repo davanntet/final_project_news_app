@@ -25,7 +25,6 @@ class ForgetPasswordPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-
             Text(
               "Forget Password",
               style: Theme.of(context).textTheme.labelLarge,
@@ -51,19 +50,26 @@ class ForgetPasswordPage extends StatelessWidget {
                   image: AssetImage('assets/images/sao.png'),
                   fit: BoxFit.cover,
                 ),
-
               ),
             ),
-            SizedBox(height: 50,),
-
+            const SizedBox(
+              height: 50,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: FormInput(controller: _emailController, labelText: "Email", hintText: "Enter your email", prefixIcon: Icons.email_outlined,),
+              child: FormInput(
+                controller: _emailController,
+                labelText: "Email",
+                hintText: "Enter your email",
+                prefixIcon: Icons.email_outlined,
+              ),
             ),
-            SizedBox(height: 30,),
+            const SizedBox(
+              height: 30,
+            ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 25),
-              height:50 ,
+              height: 50,
               alignment: Alignment.centerRight,
               child: ElevatedButton(
                 onPressed: () {
@@ -76,7 +82,6 @@ class ForgetPasswordPage extends StatelessWidget {
                 child: const Text("Reset Password"),
               ),
             ),
-
           ],
         ),
       ),

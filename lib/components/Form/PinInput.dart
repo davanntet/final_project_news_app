@@ -18,22 +18,18 @@ class _PinInputState extends State<PinInput> {
       height: 50,
       child: TextFormField(
         controller: _controller,
-        onChanged: (value){
-          if(value == ""){
+        onChanged: (value) {
+          if (value == "") {
             FocusScope.of(context).previousFocus();
-          }
-          else{
-            _controller.text = value[value.length-1];
+          } else {
+            _controller.text = value[value.length - 1];
             FocusScope.of(context).nextFocus();
           }
         },
         keyboardType: TextInputType.number,
         textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 22,
-          fontWeight: FontWeight.bold,
-          color: AppColors.black
-        ),
+        style: const TextStyle(
+            fontSize: 22, fontWeight: FontWeight.bold, color: AppColors.black),
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
@@ -51,18 +47,16 @@ class _PinInputState extends State<PinInput> {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-
             borderSide: const BorderSide(
               color: AppColors.blue,
               width: 1,
             ),
           ),
           hintText: "-",
-          hintStyle: TextStyle(
-            fontSize: 17,
-            fontWeight: FontWeight.bold,
-            color: AppColors.black
-          ),
+          hintStyle: const TextStyle(
+              fontSize: 17,
+              fontWeight: FontWeight.bold,
+              color: AppColors.black),
         ),
         inputFormatters: [
           // LengthLimitingTextInputFormatter(1),

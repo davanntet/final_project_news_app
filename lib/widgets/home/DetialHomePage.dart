@@ -6,11 +6,9 @@ class DetailHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      body:Stack(
+      body: Stack(
         children: [
-
           SingleChildScrollView(
             child: Stack(
               children: [
@@ -26,7 +24,7 @@ class DetailHomePage extends StatelessWidget {
                   ),
                 ),
                 //article
-            Container(
+                Container(
                   margin: const EdgeInsets.only(top: 230),
                   padding: const EdgeInsets.all(20),
                   width: double.infinity,
@@ -39,32 +37,34 @@ class DetailHomePage extends StatelessWidget {
                     children: [
                       //tag
                       TextButton(
-                        onPressed: (){},
-                        child: Text(
-                          'UI Design',
-                          style: Theme.of(context).textTheme.headlineMedium
-                        ),
+                        onPressed: () {},
+                        child: Text('UI Design',
+                            style: Theme.of(context).textTheme.headlineMedium),
                       ),
-                      Text(
+                      const Text(
                         'How to make a good UI design',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      SizedBox(height: 10,),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       //author profile and date
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-
                           Row(
                             children: [
                               CircleAvatar(
                                 radius: 15,
-                                backgroundImage: AssetImage('assets/images/profile.png'),
+                                backgroundImage:
+                                    AssetImage('assets/images/profile.png'),
                               ),
-                              SizedBox(width: 10,),
+                              SizedBox(
+                                width: 10,
+                              ),
                               Text(
                                 'Davann Tet',
                                 style: TextStyle(
@@ -83,47 +83,55 @@ class DetailHomePage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10,),
-                      Text(
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam id aliquam ultrices, nisl nunc aliquet enim, vitae aliquam nisl nunc a nisl. Sed euismod, diam id aliquam ultrices, nisl nunc aliquet enim, vitae aliquam nisl nunc a nisl.',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      SizedBox(height: 10,),
-                      Text(
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam id aliquam ultrices, nisl nunc aliquet enim, vitae aliquam nisl nunc a nisl. Sed euismod, diam id aliquam ultrices, nisl nunc aliquet enim, vitae aliquam nisl nunc a nisl.',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      SizedBox(height: 10,),
-                      Text(
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam id aliquam ultrices, nisl nunc aliquet enim, vitae aliquam nisl nunc a nisl. Sed euismod, diam id aliquam ultrices, nisl nunc aliquet enim, vitae aliquam nisl nunc a nisl.',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      SizedBox(height: 10,),
-                      Text(
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam id aliquam ultrices, nisl nunc aliquet enim, vitae aliquam nisl nunc a nisl. Sed euismod, diam id aliquam ultrices, nisl nunc aliquet enim, vitae aliquam nisl nunca nisl.',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                  ],
+                    ],
                   ),
-                  ),
+                ),
               ],
             ),
           ),
           Container(
             margin: const EdgeInsets.all(0),
-            padding: const EdgeInsets.only(left:5,top: 5),
+            padding: const EdgeInsets.only(left: 5, top: 5),
             alignment: Alignment.bottomLeft,
             height: 60,
             color: Colors.transparent,
@@ -135,7 +143,7 @@ class DetailHomePage extends StatelessWidget {
               icon: const Icon(
                 Icons.arrow_back_ios,
                 size: 25,
-                color:AppColors.grey,
+                color: AppColors.grey,
               ),
             ),
           ),
@@ -150,7 +158,7 @@ class DetailHomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
-                onTap: (){
+                onTap: () {
                   Navigator.pushNamed(context, '/comment');
                 },
                 child: Container(
@@ -191,7 +199,9 @@ class DetailHomePage extends StatelessWidget {
                 ),
               ),
               InkWell(
-                onTap: () { shareMethod(context); },
+                onTap: () {
+                  shareMethod(context);
+                },
                 child: Container(
                   height: 40,
                   width: 40,
@@ -208,23 +218,24 @@ class DetailHomePage extends StatelessWidget {
             ],
           ),
         ),
-
       ),
     );
   }
 }
 
-void shareMethod(BuildContext context){
+void shareMethod(BuildContext context) {
   //show share method as snackbar have stories,whatapp,facebook,twitter,line,link copy,more
-  final double wdth = MediaQuery.of(context).size.width/4-5;
+  final double wdth = MediaQuery.of(context).size.width / 4 - 5;
   showModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
         return Container(
-          height: wdth*3,
+          height: wdth * 3,
           child: Column(
             children: [
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               Container(
                 height: 3,
                 width: 75,
@@ -233,31 +244,38 @@ void shareMethod(BuildContext context){
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              const SizedBox(height: 10,),
-              Text(
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
                 'Share Article',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               Container(
                 width: double.infinity,
                 alignment: Alignment.center,
                 child: Wrap(
                   children: [
-                    Container(
+                    SizedBox(
                       height: wdth,
                       width: wdth,
                       child: Column(
                         children: [
-                         CircleAvatar(
-                            radius: wdth/4,
-                            backgroundImage: AssetImage('assets/icons/stories.png'),
-                         ),
-                          const SizedBox(height: 10,),
-                          Text(
+                          CircleAvatar(
+                            radius: wdth / 4,
+                            backgroundImage:
+                                const AssetImage('assets/icons/stories.png'),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
                             'Stories',
                             style: TextStyle(
                               fontSize: 16,
@@ -273,11 +291,14 @@ void shareMethod(BuildContext context){
                       child: Column(
                         children: [
                           CircleAvatar(
-                            radius: wdth/4,
-                            backgroundImage: AssetImage('assets/icons/whatapp.png'),
+                            radius: wdth / 4,
+                            backgroundImage:
+                                const AssetImage('assets/icons/whatapp.png'),
                           ),
-                          const SizedBox(height: 10,),
-                          Text(
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
                             'Whatapp',
                             style: TextStyle(
                               fontSize: 16,
@@ -287,17 +308,20 @@ void shareMethod(BuildContext context){
                         ],
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       height: wdth,
                       width: wdth,
                       child: Column(
                         children: [
                           CircleAvatar(
-                            radius: wdth/4,
-                            backgroundImage: AssetImage('assets/icons/facebook.png'),
+                            radius: wdth / 4,
+                            backgroundImage:
+                                const AssetImage('assets/icons/facebook.png'),
                           ),
-                          const SizedBox(height: 10,),
-                          Text(
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
                             'Facebook',
                             style: TextStyle(
                               fontSize: 16,
@@ -307,17 +331,20 @@ void shareMethod(BuildContext context){
                         ],
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       height: wdth,
                       width: wdth,
                       child: Column(
                         children: [
                           CircleAvatar(
-                            radius: wdth/4,
-                            backgroundImage: AssetImage('assets/icons/twitter.png'),
+                            radius: wdth / 4,
+                            backgroundImage:
+                                const AssetImage('assets/icons/twitter.png'),
                           ),
-                          const SizedBox(height: 10,),
-                          Text(
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
                             'Twitter',
                             style: TextStyle(
                               fontSize: 16,
@@ -327,17 +354,20 @@ void shareMethod(BuildContext context){
                         ],
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       height: wdth,
                       width: wdth,
                       child: Column(
                         children: [
                           CircleAvatar(
-                            radius: wdth/4,
-                            backgroundImage: AssetImage('assets/icons/line.png'),
+                            radius: wdth / 4,
+                            backgroundImage:
+                                const AssetImage('assets/icons/line.png'),
                           ),
-                          const SizedBox(height: 10,),
-                          Text(
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
                             'Line',
                             style: TextStyle(
                               fontSize: 16,
@@ -347,17 +377,20 @@ void shareMethod(BuildContext context){
                         ],
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       height: wdth,
                       width: wdth,
                       child: Column(
                         children: [
                           CircleAvatar(
-                            radius: wdth/4,
-                            backgroundImage: AssetImage('assets/icons/copy.png'),
+                            radius: wdth / 4,
+                            backgroundImage:
+                                const AssetImage('assets/icons/copy.png'),
                           ),
-                          const SizedBox(height: 10,),
-                          Text(
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
                             'Copy',
                             style: TextStyle(
                               fontSize: 16,
@@ -367,17 +400,20 @@ void shareMethod(BuildContext context){
                         ],
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       height: wdth,
                       width: wdth,
                       child: Column(
                         children: [
                           CircleAvatar(
-                            radius: wdth/4,
-                            backgroundImage: AssetImage('assets/icons/more.png'),
+                            radius: wdth / 4,
+                            backgroundImage:
+                                const AssetImage('assets/icons/more.png'),
                           ),
-                          const SizedBox(height: 10,),
-                          Text(
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
                             'More',
                             style: TextStyle(
                               fontSize: 16,
@@ -393,7 +429,5 @@ void shareMethod(BuildContext context){
             ],
           ),
         );
-      }
-  );
-
+      });
 }

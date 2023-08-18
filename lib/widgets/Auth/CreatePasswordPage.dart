@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:final_project_news_app/components/Form/FormInput.dart';
 import 'package:flutter/material.dart';
 
@@ -70,11 +71,11 @@ class CreatePasswordPage extends StatelessWidget {
                 ],
               ),
             )),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             ElevatedButton(onPressed: () {}, child: const Text("Save")),
-            SizedBox(),
+            const SizedBox(),
           ],
         ),
       ),

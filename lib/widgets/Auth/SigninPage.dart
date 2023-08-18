@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:final_project_news_app/components/Form/FormInput.dart';
 import 'package:final_project_news_app/constraint/AppColors.dart';
 import 'package:flutter/material.dart';
@@ -90,22 +91,21 @@ class SigninPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ElevatedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/indexapp');
                   },
-                  child: const Text("Sign in")
-              ),
-              SizedBox(
+                  child: const Text("Sign in")),
+              const SizedBox(
                   height: 50,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    padding: EdgeInsets.symmetric(horizontal: 25),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Expanded(
                             child: Divider(
                           color: AppColors.greyscale,
@@ -143,7 +143,7 @@ class SigninPage extends StatelessWidget {
                       )
                     ],
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               ElevatedButton(
@@ -166,7 +166,7 @@ class SigninPage extends StatelessWidget {
                           style: TextStyle(color: Colors.black))
                     ],
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -176,14 +176,14 @@ class SigninPage extends StatelessWidget {
                     "You don't have an account?",
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   InkWell(
                       onTap: () {
                         Navigator.pushNamed(context, '/signup');
                       },
-                      child: Text(
+                      child: const Text(
                         "Sign UP",
                         style: TextStyle(
                             color: AppColors.blue,

@@ -1,6 +1,8 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 
 import '../../constraint/AppColors.dart';
+
 class NewRecommandation extends StatelessWidget {
   const NewRecommandation({super.key});
 
@@ -24,7 +26,9 @@ class NewRecommandation extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 25,),
+            const SizedBox(
+              height: 25,
+            ),
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
@@ -35,7 +39,6 @@ class NewRecommandation extends StatelessWidget {
                   Container(
                     width: MediaQuery.sizeOf(context).width * 0.30,
                     height: MediaQuery.sizeOf(context).width * 0.30,
-
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       image: const DecorationImage(
@@ -44,15 +47,16 @@ class NewRecommandation extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10,),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   Container(
-                    width: MediaQuery.sizeOf(context).width * 0.70-30,
+                    width: MediaQuery.sizeOf(context).width * 0.70 - 30,
                     height: MediaQuery.sizeOf(context).width * 0.30,
                     alignment: Alignment.topLeft,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                       children: [
                         Text(
                           "Charlize Theron Selling Los Angeles Bungalow",
@@ -60,35 +64,62 @@ class NewRecommandation extends StatelessWidget {
                           textAlign: TextAlign.start,
                           softWrap: true,
                         ),
-                        SizedBox(height: 5,),
+                        const SizedBox(
+                          height: 5,
+                        ),
                         Text(
                           "By John Doe",
                           style: Theme.of(context).textTheme.titleMedium,
                           textAlign: TextAlign.start,
                           softWrap: true,
                         ),
-                        SizedBox(height: 5,),
+                        const SizedBox(
+                          height: 5,
+                        ),
                         //row hava such as icon favorite, comment, ago
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Row(
                               children: [
-                                Icon(Icons.favorite_border_outlined,size: 20,),
-                                SizedBox(width: 5,),
-                                Text("1.2k",style: Theme.of(context).textTheme.titleSmall,)
+                                const Icon(
+                                  Icons.favorite_border_outlined,
+                                  size: 20,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "1.2k",
+                                  style: Theme.of(context).textTheme.titleSmall,
+                                )
                               ],
                             ),
-                            SizedBox(width: 10,),
+                            const SizedBox(
+                              width: 10,
+                            ),
                             Row(
                               children: [
-                                Icon(Icons.comment_outlined,size: 20,),
-                                SizedBox(width: 5,),
-                                Text("1.2k",style: Theme.of(context).textTheme.titleSmall,)
+                                const Icon(
+                                  Icons.comment_outlined,
+                                  size: 20,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "1.2k",
+                                  style: Theme.of(context).textTheme.titleSmall,
+                                )
                               ],
                             ),
-                            SizedBox(width: 10,),
-                            Text("1 min ago",style: Theme.of(context).textTheme.titleSmall,),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "1 min ago",
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
                           ],
                         )
                       ],

@@ -1,5 +1,6 @@
 import 'package:final_project_news_app/constraint/AppColors.dart';
 import 'package:flutter/material.dart';
+
 class TredingTopic extends StatelessWidget {
   const TredingTopic({super.key});
   @override
@@ -22,12 +23,11 @@ class TredingTopic extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             ListTile(
-
-              leading: CircleAvatar(
+              leading: const CircleAvatar(
                 radius: 35,
                 backgroundImage: AssetImage('assets/images/profile.png'),
               ),
@@ -51,9 +51,8 @@ class TredingTopic extends StatelessWidget {
                             color: AppColors.white,
                             width: 2,
                           ),
-                          image: DecorationImage(
-                            image: AssetImage(
-                                'assets/images/profile.png'),
+                          image: const DecorationImage(
+                            image: AssetImage('assets/images/profile.png'),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -68,9 +67,8 @@ class TredingTopic extends StatelessWidget {
                             color: AppColors.white,
                             width: 2,
                           ),
-                          image: DecorationImage(
-                            image: AssetImage(
-                                'assets/images/profile.png'),
+                          image: const DecorationImage(
+                            image: AssetImage('assets/images/profile.png'),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -85,23 +83,22 @@ class TredingTopic extends StatelessWidget {
                             color: AppColors.white,
                             width: 2,
                           ),
-                          image: DecorationImage(
-                            image: AssetImage(
-                                'assets/images/profile.png'),
+                          image: const DecorationImage(
+                            image: AssetImage('assets/images/profile.png'),
                             fit: BoxFit.cover,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Text(
                     "+2.5k",
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Text(
@@ -110,7 +107,7 @@ class TredingTopic extends StatelessWidget {
                   ),
                 ],
               ),
-              trailing: Icon(
+              trailing: const Icon(
                 Icons.arrow_forward_ios,
                 color: AppColors.black,
               ),
