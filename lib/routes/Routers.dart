@@ -24,7 +24,8 @@ class Routers {
       case '/signup':
         return MaterialPageRoute(builder: (_) => SignUP());
       case '/createpassword':
-        return MaterialPageRoute(builder: (_) => CreatePasswordPage());
+        final args = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(builder: (_) => CreatePasswordPage(email: args['email'], username: args['username'],));
       case '/forgetpassword':
         return MaterialPageRoute(builder: (_) => ForgetPasswordPage());
       case '/emailverify':

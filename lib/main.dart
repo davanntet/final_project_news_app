@@ -1,13 +1,38 @@
 import 'package:final_project_news_app/constraint/AppColors.dart';
+import 'package:final_project_news_app/providers/user_provider.dart';
 import 'package:final_project_news_app/routes/Routers.dart';
+import 'package:final_project_news_app/services/auth_service.dart';
 import 'package:final_project_news_app/widgets/App/SplashPage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/auth_provider.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MainApp());
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  runApp(
+    MultiProvider(
+      providers: [
+        Provider(create: (context) => FirebaseAuthService()),
+         ChangeNotifierProvider(
+          create: (context) => AuthProvider(
+            context.read<FirebaseAuthService>(),
+          ),
+        ),   
+        ChangeNotifierProvider(
+          create: (context) => UserProvider(),
+        ),
+      ],
+      child:const MainApp(),
+      ) 
+  );
 }
 
 class MainApp extends StatelessWidget {

@@ -1,4 +1,5 @@
 // ignore: file_names
+
 import 'package:flutter/material.dart';
 
 import '../../components/Form/FormInput.dart';
@@ -8,6 +9,7 @@ class SignUP extends StatelessWidget {
   SignUP({super.key});
   final _emailController = TextEditingController();
   final _fullname = TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +79,10 @@ class SignUP extends StatelessWidget {
               ),
               ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/createpassword');
+                    Navigator.pushNamed(context, '/createpassword',arguments: {
+                      'email':_emailController.text,
+                      'username':_fullname.text
+                    });
                   },
                   child: const Text("Sign UP")),
               const SizedBox(
@@ -173,6 +178,7 @@ class SignUP extends StatelessWidget {
                   ),
                   InkWell(
                       onTap: () {
+
                         Navigator.pushNamed(context, '/signin');
                       },
                       child: const Text(

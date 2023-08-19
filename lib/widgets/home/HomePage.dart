@@ -1,6 +1,11 @@
 // ignore: file_names
 import 'package:final_project_news_app/constraint/AppColors.dart';
+import 'package:final_project_news_app/models/virtualdata/data_info.dart';
+import 'package:final_project_news_app/models/virtualdata/data_user.dart';
 import 'package:flutter/material.dart';
+
+import '../../components/home/card.dart';
+import '../../components/home/slider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -32,88 +37,37 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+            SizedBox(
                 width: double.infinity,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Discover Treding\nNews",
-                      style: Theme.of(context).textTheme.labelMedium,
-                      textAlign: TextAlign.start,
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        "Discover Treding\nNews",
+                        style: Theme.of(context).textTheme.labelMedium,
+                        textAlign: TextAlign.start,
+                      ),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      width: MediaQuery.sizeOf(context).width * 0.7,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: AppColors.blue.withOpacity(0.05),
+                    //slide
+                    SizedBox(
+                      height:300,
+                      child: ListView.builder(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: data_info.data_info_list.length,
+                        itemBuilder: (BuildContext context, int index)=>HomeSlider(datas: data_info.data_info_list[index],),
                       ),
-                      child: Column(
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/detailhome');
-                            },
-                            child: Container(
-                              height:
-                                  MediaQuery.sizeOf(context).width * 0.7 * 0.63,
-                              width: MediaQuery.sizeOf(context).width * 0.7,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                image: const DecorationImage(
-                                  image: AssetImage('assets/images/news.png'),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Text(
-                            "The most popular news in the world",
-                            style: Theme.of(context).textTheme.labelSmall,
-                            textAlign: TextAlign.start,
-                          ),
-                          Row(
-                            children: [
-                              TextButton(
-                                  onPressed: () {},
-                                  child: const Text(
-                                    "Treding",
-                                  )),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "1 min ago",
-                                style: Theme.of(context).textTheme.titleSmall,
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Row(
-                                children: [
-                                  const CircleAvatar(
-                                    radius: 2,
-                                    backgroundColor: AppColors.grey,
-                                  ),
-                                  Text(
-                                    "10 min read",
-                                    style:
-                                        Theme.of(context).textTheme.titleSmall,
-                                  )
-                                ],
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
+                    )
                   ],
-                )),
+                )
+            ),
             const SizedBox(
               height: 10,
             ),
@@ -155,104 +109,15 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    width: MediaQuery.sizeOf(context).width * 0.30,
-                    height: MediaQuery.sizeOf(context).width * 0.30,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: const DecorationImage(
-                        image: AssetImage('assets/images/news.png'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    width: MediaQuery.sizeOf(context).width * 0.70 - 30,
-                    height: MediaQuery.sizeOf(context).width * 0.30,
-                    alignment: Alignment.topLeft,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Charlize Theron Selling Los Angeles Bungalow",
-                          style: Theme.of(context).textTheme.labelSmall,
-                          textAlign: TextAlign.start,
-                          softWrap: true,
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          "By John Doe",
-                          style: Theme.of(context).textTheme.titleMedium,
-                          textAlign: TextAlign.start,
-                          softWrap: true,
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        //row hava such as icon favorite, comment, ago
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.favorite_border_outlined,
-                                  size: 20,
-                                ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  "1.2k",
-                                  style: Theme.of(context).textTheme.titleSmall,
-                                )
-                              ],
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.comment_outlined,
-                                  size: 20,
-                                ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  "1.2k",
-                                  style: Theme.of(context).textTheme.titleSmall,
-                                )
-                              ],
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "1 min ago",
-                              style: Theme.of(context).textTheme.titleSmall,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            //card
+            ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              physics: const NeverScrollableScrollPhysics(),
+              reverse: true,
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              itemCount: data_info.data_info_list.length,
+              itemBuilder: (BuildContext context, int index)=>HomeCard(datas: data_info.data_info_list[index], users: data_user.datas[index],),
             )
           ],
         ),

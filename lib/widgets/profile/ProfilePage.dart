@@ -143,7 +143,16 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
             ],
-          )
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/staterpage');
+            },
+           child: const Text("Logout")
+           )
         ],
       ),
     ));

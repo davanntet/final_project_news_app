@@ -3,7 +3,6 @@ import 'package:final_project_news_app/widgets/home/HomePage.dart';
 import 'package:final_project_news_app/widgets/profile/ProfilePage.dart';
 import 'package:final_project_news_app/widgets/search/SearchPage.dart';
 import 'package:flutter/material.dart';
-
 import '../notification/NotifactionPage.dart';
 
 class IndexApp extends StatefulWidget {

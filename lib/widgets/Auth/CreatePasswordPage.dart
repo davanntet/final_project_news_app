@@ -1,11 +1,34 @@
 // ignore: file_names
+
 import 'package:final_project_news_app/components/Form/FormInput.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class CreatePasswordPage extends StatelessWidget {
-  CreatePasswordPage({super.key});
+import '../../providers/auth_provider.dart';
+
+class CreatePasswordPage extends StatefulWidget {
+  const CreatePasswordPage(
+      {super.key, required this.username, required this.email});
+  final String username;
+  final String email;
+  @override
+  State<CreatePasswordPage> createState() => _CreatePasswordPageState();
+}
+
+class _CreatePasswordPageState extends State<CreatePasswordPage> {
   final _passwordController = TextEditingController();
+
   final _confirmController = TextEditingController();
+
+  void register() {
+    // print(widget.email);
+    // print(widget.username);
+    context.read<AuthProvider>().signUpWithEmailAndPassword(
+      
+        email: widget.email,
+        password: _passwordController.text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +97,12 @@ class CreatePasswordPage extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            ElevatedButton(onPressed: () {}, child: const Text("Save")),
+            ElevatedButton(
+                onPressed: () {
+                  // Navigator.pushNamed(context, '/signin');
+                  register();
+                },
+                child: const Text("Save")),
             const SizedBox(),
           ],
         ),
