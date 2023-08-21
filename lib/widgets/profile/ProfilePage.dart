@@ -1,6 +1,7 @@
+import 'package:final_project_news_app/components/profile/setting.dart';
+import 'package:final_project_news_app/models/virtualdata/data_setting.dart';
+import 'package:final_project_news_app/widgets/follow/follower.dart';
 import 'package:flutter/material.dart';
-
-import '../../constraint/AppColors.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -64,9 +65,14 @@ class ProfilePage extends StatelessWidget {
                   children: [
                     Column(
                       children: [
-                        Text(
-                          "0",
-                          style: Theme.of(context).textTheme.labelSmall,
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/follower');
+                          },
+                          child: Text(
+                            "0",
+                            style: Theme.of(context).textTheme.labelSmall,
+                          ),
                         ),
                         const SizedBox(
                           height: 5,
@@ -87,9 +93,14 @@ class ProfilePage extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        Text(
-                          "0",
-                          style: Theme.of(context).textTheme.labelSmall,
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/following');
+                          },
+                          child: Text(
+                            "0",
+                            style: Theme.of(context).textTheme.labelSmall,
+                          ),
                         ),
                         const SizedBox(
                           height: 5,
@@ -108,51 +119,22 @@ class ProfilePage extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Column(
-            children: [
-              InkWell(
-                onTap: () {},
-                highlightColor: AppColors.blue.withOpacity(0.1),
-                hoverColor: AppColors.blue.withOpacity(0.5),
-                splashColor: AppColors.blue.withOpacity(0.15),
-                child: ListTile(
-                  leading: const Column(
-                    children: [
-                      Icon(
-                        Icons.bookmark_border_rounded,
-                        size: 30,
-                      )
-                    ],
-                  ),
-                  title: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          child: const Text(
-                            "Bookmarks",
-                            textAlign: TextAlign.start,
-                          ),
-                        ),
-                        Text(
-                          "Articles that you have saved can be read back here",
-                          style: Theme.of(context).textTheme.titleSmall,
-                        )
-                      ]),
-                  trailing: const Icon(Icons.arrow_forward_ios),
-                ),
-              ),
-            ],
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            itemCount: data_setting.datas.length,
+            itemBuilder: (BuildContext context, int index) =>
+                ProfileSetting(data: data_setting.datas[index]),
           ),
           const SizedBox(
             height: 20,
           ),
           ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/staterpage');
-            },
-           child: const Text("Logout")
-           )
+              onPressed: () {
+                Navigator.pushNamed(context, '/staterpage');
+              },
+              child: const Text("Logout"))
         ],
       ),
     ));

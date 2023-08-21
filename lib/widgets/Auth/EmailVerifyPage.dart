@@ -1,6 +1,7 @@
 // ignore: file_names
 import 'package:final_project_news_app/components/Form/ExpireTime.dart';
 import 'package:final_project_news_app/components/Form/PinInput.dart';
+import 'package:final_project_news_app/constraint/AppColors.dart';
 import 'package:flutter/material.dart';
 
 class EmailVerifyPage extends StatelessWidget {
@@ -14,7 +15,7 @@ class EmailVerifyPage extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          highlightColor: const Color(0xff4D6EFD).withOpacity(0.1),
+          highlightColor: AppColors.blue.withOpacity(0.1),
           icon: const Icon(
             Icons.arrow_back_ios,
             size: 20,

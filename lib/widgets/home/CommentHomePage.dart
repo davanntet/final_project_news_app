@@ -283,7 +283,7 @@ class _CommentHomePageState extends State<CommentHomePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width - 100,
                   child: TextField(
                     controller: _commentController,

@@ -1,4 +1,5 @@
 import 'package:final_project_news_app/components/Form/FormInput.dart';
+import 'package:final_project_news_app/constraint/AppColors.dart';
 import 'package:flutter/material.dart';
 
 class ForgetPasswordPage extends StatelessWidget {
@@ -12,10 +13,7 @@ class ForgetPasswordPage extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          // focusColor: const Color(0xff4D6EFD),
-          // splashColor: const Color(0xff4D6EFD),
-          // hoverColor: const Color(0xff4D6EFD),
-          highlightColor: const Color(0xff4D6EFD).withOpacity(0.1),
+          highlightColor: AppColors.blue.withOpacity(0.1),
           icon: const Icon(
             Icons.arrow_back_ios,
             size: 20,
