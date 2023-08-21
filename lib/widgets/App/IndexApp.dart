@@ -1,4 +1,6 @@
 import 'package:final_project_news_app/constraint/AppColors.dart';
+import 'package:final_project_news_app/widgets/follow/followe.dart';
+import 'package:final_project_news_app/widgets/follow/followpage.dart';
 import 'package:final_project_news_app/widgets/home/HomePage.dart';
 import 'package:final_project_news_app/widgets/profile/ProfilePage.dart';
 import 'package:final_project_news_app/widgets/search/SearchPage.dart';
@@ -21,6 +23,7 @@ class _IndexAppState extends State<IndexApp> {
         children: const [
           HomePage(),
           SearchPage(),
+          FollowPage(),
           NotificationPage(),
           ProfilePage(),
         ],
@@ -63,12 +66,18 @@ class _IndexAppState extends State<IndexApp> {
                   height: 24),
               label: "Explorer",
             ),
+             const BottomNavigationBarItem(
+              icon:  Icon(Icons.person_add_alt,),
+              activeIcon:  Icon(Icons.person_add_alt_rounded,color: AppColors.blue),
+              
+              label: "Follow",
+            ),
             BottomNavigationBarItem(
               icon: Image(
-                  image: _selectedIndex == 2
+                  image: _selectedIndex == 3
                       ? const AssetImage('assets/bottoms/notification1.png')
                       : const AssetImage('assets/bottoms/notification0.png'),
-                  color: _selectedIndex == 2
+                  color: _selectedIndex == 3
                       ? AppColors.blue
                       : AppColors.greyscale,
                   width: 24,
@@ -77,10 +86,10 @@ class _IndexAppState extends State<IndexApp> {
             ),
             BottomNavigationBarItem(
               icon: Image(
-                  image: _selectedIndex == 3
+                  image: _selectedIndex == 4
                       ? const AssetImage('assets/bottoms/profile1.png')
                       : const AssetImage('assets/bottoms/profile0.png'),
-                  color: _selectedIndex == 3
+                  color: _selectedIndex == 4
                       ? AppColors.blue
                       : AppColors.greyscale,
                   width: 24,

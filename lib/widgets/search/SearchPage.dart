@@ -1,6 +1,7 @@
 import 'package:final_project_news_app/models/virtualdata/data_category.dart';
 import 'package:final_project_news_app/models/virtualdata/data_info.dart';
 import 'package:final_project_news_app/models/virtualdata/data_user.dart';
+import 'package:final_project_news_app/widgets/search/SearchMethod.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/home/card.dart';
@@ -18,22 +19,28 @@ class SearchPage extends StatelessWidget {
               height: 25,
             ),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Search News",
-                  hintStyle: Theme.of(context).textTheme.titleLarge,
-                  prefixIcon: const Icon(
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              decoration: BoxDecoration(
+                color: AppColors.greywhite.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: InkWell(
+                onTap: () {
+                  // Navigator.pushNamed(context, '/searchmethod');
+                  SearchFunc(context);
+                },
+                radius: 70,
+                highlightColor: AppColors.white,
+                child: ListTile(
+                  leading: const Icon(
                     Icons.search,
                     size: 35,
                     color: AppColors.grey,
                   ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide.none,
+                  title: Text(
+                    "Search News",
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  filled: true,
-                  fillColor: AppColors.greywhite.withOpacity(0.5),
                 ),
               ),
             ),
@@ -176,40 +183,12 @@ class SearchPage extends StatelessWidget {
   }
 }
 
-void SearchMethod(BuildContext context) {
-  showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            elevation: 0,
-            leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(
-                Icons.arrow_back_ios,
-                color: Colors.black,
-              ),
-            ),
-            title: Container(
-              width: MediaQuery.sizeOf(context).width * 0.80,
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: "Search",
-                  hintStyle: Theme.of(context).textTheme.titleSmall,
-                  border: InputBorder.none,
-                  prefixIcon: const Icon(Icons.search),
-                ),
-              ),
-            ),
-          ),
-        );
-      });
+
+void SearchFunc(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return const SearchMethod();
+    },
+  );
 }
