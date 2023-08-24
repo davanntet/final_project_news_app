@@ -12,6 +12,7 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -120,10 +121,15 @@ class SearchPage extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Column(
                         children: [
-                          CircleAvatar(
-                            radius: 25,
-                            backgroundImage:
-                                AssetImage(data_user.datas[index].image),
+                          InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/visitprofile');
+                            },
+                            child: CircleAvatar(
+                              radius: 25,
+                              backgroundImage:
+                                  AssetImage(data_user.datas[index].image),
+                            ),
                           ),
                           Text(
                             data_user.datas[index].name,

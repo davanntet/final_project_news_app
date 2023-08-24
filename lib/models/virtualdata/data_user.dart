@@ -55,7 +55,7 @@ class data_user {
     user_data_form(
       name: 'Odette OD',
       bio: 'Nothing to say!',
-      image: 'assets/homes/img.png',
+      image: 'assets/homes/background.png',
       follower: 100,
       following: 100,
     ),

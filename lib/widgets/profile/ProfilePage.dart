@@ -1,6 +1,5 @@
 import 'package:final_project_news_app/components/profile/setting.dart';
 import 'package:final_project_news_app/models/virtualdata/data_setting.dart';
-import 'package:final_project_news_app/widgets/follow/follower.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -125,7 +124,7 @@ class ProfilePage extends StatelessWidget {
             scrollDirection: Axis.vertical,
             itemCount: data_setting.datas.length,
             itemBuilder: (BuildContext context, int index) =>
-                ProfileSetting(data: data_setting.datas[index]),
+                ProfileSetting(data: data_setting.datas[index],),
           ),
           const SizedBox(
             height: 20,

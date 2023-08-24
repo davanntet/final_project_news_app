@@ -7,18 +7,22 @@ class TredingTopic extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Trending Topic"),
-        leading: IconButton(
+          elevation: 0,
+          scrolledUnderElevation: 0,
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
+          leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          highlightColor: const Color(0xff4D6EFD).withOpacity(0.1),
+          highlightColor: AppColors.blue.withOpacity(0.1),
           icon: const Icon(
             Icons.arrow_back_ios,
             size: 20,
             color: AppColors.black,
           ),
         ),
+        title: const Text("New Recommandation"),
       ),
       body: SingleChildScrollView(
         child: Column(

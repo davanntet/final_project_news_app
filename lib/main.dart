@@ -7,7 +7,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../providers/auth_provider.dart';
 import 'firebase_options.dart';
 
@@ -149,6 +148,7 @@ class MainApp extends StatelessWidget {
             elevation: 1,
           ),
         ),
+      
       ),
       home: const Scaffold(
         body: SplashPage(),
