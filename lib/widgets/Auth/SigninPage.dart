@@ -2,15 +2,127 @@
 import 'package:final_project_news_app/components/Form/FormInput.dart';
 import 'package:final_project_news_app/constraint/AppColors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class SigninPage extends StatelessWidget {
-  SigninPage({super.key});
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+import '../../providers/auth_provider.dart';
+
+class SigninPage extends StatefulWidget {
+  const SigninPage({super.key});
+
+  @override
+  State<SigninPage> createState() => _SigninPageState();
+}
+
+class _SigninPageState extends State<SigninPage> {
+  late final TextEditingController _emailController;
+  late final TextEditingController _passwordController;
+  late final AuthProvider _authProvider;
+  @override
+  void initState() {
+    super.initState();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((timeStamp) {
+      _authProvider = context.read<AuthProvider>();
+      _authProvider.addListener(() {
+        loginStatus();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _emailController.dispose();
+    _passwordController.dispose();
+    _authProvider.dispose();
+    super.dispose();
+  }
+
+  void loginStatus() {
+    if (_authProvider.loginStatus == 2) {
+      Navigator.pushNamed(context, '/indexapp');
+    } else if (_authProvider.loginStatus == 0) {
+      Navigator.pop(context);
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: const Text("Error"),
+                content: const Text("Email or password is incorrect"),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text("OK"))
+                ],
+              ));
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) =>
+              const Center(child: CircularProgressIndicator.adaptive()));
+    }
+  }
+
+  Future<void> login() async {
+    if (mounted) {
+      try {
+              await _authProvider.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      } catch (e) {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text("Error"),
+                content: const Text("Something Went Wrong"),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text("OK"))
+                ],
+              );
+            });
+      }
+
+    } else {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text("Error"),
+              content: const Text("Something Went Wrong"),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text("OK"))
+              ],
+            );
+          });
+    }
+
+    // navigateTo();
+  }
+
+  void navigateTo() {
+    Navigator.pushNamed(context, '/indexapp');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -96,7 +208,8 @@ class SigninPage extends StatelessWidget {
               ),
               ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/indexapp');
+                    login();
+                    // Navigator.pushNamed(context, '/indexapp');
                   },
                   child: const Text("Sign in")),
               const SizedBox(

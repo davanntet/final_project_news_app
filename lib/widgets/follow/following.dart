@@ -1,3 +1,4 @@
+import 'package:final_project_news_app/models/virtualdata/data_user.dart';
 import 'package:flutter/material.dart';
 
 import '../../constraint/AppColors.dart';
@@ -14,15 +15,16 @@ class Following extends StatelessWidget {
       return Scaffold(
         body: ListView.builder(
           shrinkWrap: true,
-          itemCount: 20,
+          itemCount: data_user.datas.length,
           itemBuilder: (context, index) {
+            final user = data_user.datas[index];
             return ListTile(
-              leading: const CircleAvatar(
+              leading:  CircleAvatar(
                 radius: 25,
-                backgroundImage: AssetImage('assets/images/profile.png'),
+                backgroundImage: AssetImage(user.image),
               ),
-              title: const Text('User Name'),
-              subtitle: const Text('User Bio'),
+              title:  Text(user.name),
+              subtitle:  Text(user.bio),
               trailing: TextButton(
                 onPressed: () {},
                 style: TextButton.styleFrom(
@@ -56,15 +58,16 @@ class Following extends StatelessWidget {
       ),
         body: ListView.builder(
           shrinkWrap: true,
-          itemCount: 20,
+          itemCount: data_user.datas.length,
           itemBuilder: (context, index) {
+            final user = data_user.datas[index];
             return ListTile(
-              leading: const CircleAvatar(
+              leading: CircleAvatar(
                 radius: 25,
-                backgroundImage: AssetImage('assets/images/profile.png'),
+                backgroundImage: AssetImage(user.image),
               ),
-              title: const Text('User Name'),
-              subtitle: const Text('User Bio'),
+              title:  Text(user.name),
+              subtitle:  Text(user.bio),
               trailing: TextButton(
                 onPressed: () {},
                 style: TextButton.styleFrom(

@@ -1,159 +1,117 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-
-import '../models/user.dart';
-import '../repositories/user_repository.dart';
-import '../services/auth_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider extends ChangeNotifier {
-  final AuthService _authService;
-  final UserRepository _userRepository = UserRepository();
+  late final SharedPreferences prefs;
+  int _loginStatus = 1;
+  int _registerStatus = 1;
+  int _initStatus = 1;
+  int get loginStatus => _loginStatus;
+  int get registerStatus => _registerStatus;
+  int get initStatus => _initStatus;
+  final _instance = auth.FirebaseAuth.instance;
+  Future<void> signInWithEmailAndPassword(
+      {required String email, required String password}) async {
+    _loginStatus = 1;
+    notifyListeners();
 
-  User? _user;
-  bool _isLoading = true;
-  String _message = "";
-
-  AuthProvider(this._authService) {
-    _authService.authStateChanges.listen((auth.User? user) {
-      if (user == null) {
-        _user = null;
-        _isLoading = false;
-        notifyListeners();
-      } else {
-        _user = User.fromUser(user);
-        _isLoading = false;
-        notifyListeners();
-      }
-    });
-  }
-
-  User? get user => _user;
-  bool get isLoading => _isLoading;
-  String get message => _message;
-
-  Future<void> signInWithEmailAndPassword(String email, String password) async {
     try {
-      _isLoading = true;
-      _message = "";
+      prefs = await SharedPreferences.getInstance();
+      final result = await _instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      final user = result.user;
+      if (user != null) {
+        _loginStatus = 2;
+      } else {
+        _loginStatus = 0;
+      }
       notifyListeners();
-      await _authService.signInWithEmailAndPassword(email, password);
-      // Store user data to Firestore
-      await _storeUserData();
+      // DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('users').doc(result.user?.uid).get();
+      // if (documentSnapshot.exists) {
+      //   Map<String, dynamic> userData = documentSnapshot.data() as Map<String, dynamic>;
+      //   // Access the user data
+      //   String username = userData['username'];
+      //   String email = userData['email'];
+      //   // Do something with the retrieved user data
+      //   print('Username: $username');
+      //   print('Email: $email');
+      // } else {
+      //   print('User document does not exist');
+      // }
     } on auth.FirebaseAuthException catch (e) {
-      _message = e.message!;
+      _loginStatus = 0;
+      notifyListeners();
     } catch (e) {
-      _message = e.toString();
-    } finally {
-      _isLoading = false;
+      _loginStatus = 0;
       notifyListeners();
     }
   }
 
   // register method
   Future<void> signUpWithEmailAndPassword(
-      {required String email,required String password}) async {
+      {required String username,
+      required String email,
+      required String password}) async {
+    _registerStatus = 1;
+    notifyListeners();
     try {
-      _isLoading = true;
-      _message = "";
-      notifyListeners();
-      await _authService.signUpWithEmailAndPassword(email, password);
-      // Store user data to Firestore
-      await _storeUserData();
+      prefs = await SharedPreferences.getInstance();
+      final credential = await _instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      final user = credential.user;
+      if (user != null) {
+        final token = await user.getIdToken();
+
+        await prefs.setString("AccessToken", token.toString());
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(credential.user!.uid)
+            .set({
+          'username': username,
+          'email': email,
+          'password': password,
+          'uid': credential.user!.uid,
+        });
+
+        _registerStatus = 2;
+      } else {
+        _registerStatus = 0;
+      }
     } on auth.FirebaseAuthException catch (e) {
-      _message = e.message!;
+      _registerStatus = -1;
     } catch (e) {
-      _message = e.toString();
-    } finally {
-      _isLoading = false;
-      notifyListeners();
+      _registerStatus = -1;
     }
   }
 
-  Future<void> signInWithGoogle() async {
+  //initailize
+  Future<void> initialize() async {
+    _initStatus = 1;
+    notifyListeners();
     try {
-      _isLoading = true;
-      _message = "";
-      notifyListeners();
-      await _authService.signInWithGoogle();
-      // Store user data to Firestore
-      await _storeUserData();
-    } on auth.FirebaseAuthException catch (e) {
-      _message = e.message!;
+      if (_instance.currentUser != null) {
+        _initStatus = 2;
+        notifyListeners();
+      } else {
+        _initStatus = 0;
+        notifyListeners();
+      }
     } catch (e) {
-      _message = e.toString();
-    } finally {
-      _isLoading = false;
+      _initStatus = 0;
+      await prefs.remove("AccessToken");
       notifyListeners();
     }
   }
 
-  Future<void> signInWithFacebook() async {
-    try {
-      _isLoading = true;
-      _message = "";
-      notifyListeners();
-      await _authService.signInWithFacebook();
-      // Store user data to Firestore
-      await _storeUserData();
-    } on auth.FirebaseAuthException catch (e) {
-      _message = e.message!;
-    } catch (e) {
-      _message = e.toString();
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  Future<void> anonymousSignIn() async {
-    try {
-      _isLoading = true;
-      _message = "";
-      notifyListeners();
-      await _authService.anonymousSignIn();
-      // Store user data to Firestore
-      await _storeUserData();
-    } on auth.FirebaseAuthException catch (e) {
-      _message = e.message!;
-    } catch (e) {
-      _message = e.toString();
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
-
-  Future<void> signOut() async {
-    await _authService.signOut();
-  }
-
-  Future<void> _storeUserData() async {
-    if (_user != null) {
-      final user = _userRepository.getDocumentById(_user!.uid);
-      user.listen((event) async {
-        if (event == null) {
-          await _userRepository.addDocument(_user!);
-        }
-      });
-    }
-  }
-
-  Future<void> updateUserProfile(
-      {String? displayName, String? photoURL}) async {
-    try {
-      _isLoading = true;
-      _message = "";
-      notifyListeners();
-      await _authService.updateUserProfile(displayName, photoURL);
-      // Store user data to Firestore
-      await _storeUserData();
-    } on auth.FirebaseAuthException catch (e) {
-      _message = e.message!;
-    } catch (e) {
-      _message = e.toString();
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
+  //logout
+  Future<void> FirebaseLogout() async{
+    await _instance.signOut();
   }
 }

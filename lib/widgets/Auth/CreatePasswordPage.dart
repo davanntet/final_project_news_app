@@ -22,10 +22,8 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
   final _confirmController = TextEditingController();
 
   void register() {
-    // print(widget.email);
-    // print(widget.username);
     context.read<AuthProvider>().signUpWithEmailAndPassword(
-      
+        username: widget.username,
         email: widget.email,
         password: _passwordController.text);
   }
@@ -34,6 +32,10 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+                  elevation: 0,
+        scrolledUnderElevation: 0,
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);

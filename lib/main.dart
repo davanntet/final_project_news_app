@@ -1,7 +1,5 @@
 import 'package:final_project_news_app/constraint/AppColors.dart';
-import 'package:final_project_news_app/providers/user_provider.dart';
 import 'package:final_project_news_app/routes/Routers.dart';
-import 'package:final_project_news_app/services/auth_service.dart';
 import 'package:final_project_news_app/widgets/App/SplashPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -19,15 +17,7 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        Provider(create: (context) => FirebaseAuthService()),
-         ChangeNotifierProvider(
-          create: (context) => AuthProvider(
-            context.read<FirebaseAuthService>(),
-          ),
-        ),   
-        ChangeNotifierProvider(
-          create: (context) => UserProvider(),
-        ),
+        ChangeNotifierProvider(create: (context) => AuthProvider()),
       ],
       child:const MainApp(),
       ) 
@@ -148,7 +138,18 @@ class MainApp extends StatelessWidget {
             elevation: 1,
           ),
         ),
-      
+        iconButtonTheme:  IconButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.transparent),
+            padding: MaterialStateProperty.all(EdgeInsets.zero),
+            // minimumSize: MaterialStateProperty.all(Size.zero),
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            elevation: MaterialStateProperty.all(0),
+            overlayColor: MaterialStateProperty.all(AppColors.blue.withOpacity(0.1)),
+
+
+        ),
+      ),
       ),
       home: const Scaffold(
         body: SplashPage(),

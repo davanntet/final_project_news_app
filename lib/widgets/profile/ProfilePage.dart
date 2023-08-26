@@ -1,10 +1,26 @@
 import 'package:final_project_news_app/components/profile/setting.dart';
 import 'package:final_project_news_app/models/virtualdata/data_setting.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class ProfilePage extends StatelessWidget {
+import '../../providers/auth_provider.dart';
+
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  void logout() {
+    context.read<AuthProvider>().FirebaseLogout();
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +52,7 @@ class ProfilePage extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
                     image: const DecorationImage(
-                      image: AssetImage('assets/images/logo.png'),
+                      image: AssetImage('assets/images/profile.png'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -45,14 +61,14 @@ class ProfilePage extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  "User Name",
+                  "Davann Tet",
                   style: Theme.of(context).textTheme.labelSmall,
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 Text(
-                  "User Bio",
+                  "Nothing to Say!💕",
                   style: Theme.of(context).textTheme.titleLarge,
                   textAlign: TextAlign.center,
                 ),
@@ -64,11 +80,11 @@ class ProfilePage extends StatelessWidget {
                   children: [
                     Column(
                       children: [
-                        InkWell(
-                          onTap: () {
+                        IconButton(
+                          onPressed: () {
                             Navigator.pushNamed(context, '/follower');
                           },
-                          child: Text(
+                          icon: Text(
                             "0",
                             style: Theme.of(context).textTheme.labelSmall,
                           ),
@@ -92,11 +108,11 @@ class ProfilePage extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        InkWell(
-                          onTap: () {
+                        IconButton(
+                          onPressed: () {
                             Navigator.pushNamed(context, '/following');
                           },
-                          child: Text(
+                          icon: Text(
                             "0",
                             style: Theme.of(context).textTheme.labelSmall,
                           ),
@@ -123,19 +139,47 @@ class ProfilePage extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             scrollDirection: Axis.vertical,
             itemCount: data_setting.datas.length,
-            itemBuilder: (BuildContext context, int index) =>
-                ProfileSetting(data: data_setting.datas[index],),
+            itemBuilder: (BuildContext context, int index) => ProfileSetting(
+              data: data_setting.datas[index],
+            ),
           ),
           const SizedBox(
             height: 20,
           ),
           ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/staterpage');
+                confirm(context,logout);
+                // Navigator.pushNamed(context, '/staterpage');
               },
               child: const Text("Logout"))
         ],
       ),
     ));
   }
+}
+
+void confirm(BuildContext context,callback){
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Confirm Logout"),
+          content: const Text("Are you sure you want to logout?"),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text("Cancel")),
+            TextButton(
+                onPressed: () async {
+                  Navigator.of(context).pop();
+                  await callback();
+                  Navigator.pushNamed(context, '/staterpage');
+                },
+                child: const Text("Logout"))
+          ],
+        );
+      }
+      );
 }

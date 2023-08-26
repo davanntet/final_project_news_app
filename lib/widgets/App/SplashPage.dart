@@ -1,5 +1,7 @@
 //starter page
+import 'package:final_project_news_app/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -8,14 +10,49 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  late final AuthProvider _authProvider;
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, '/staterpage');
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.delayed(Duration.zero, () {
+        _authProvider = Provider.of<AuthProvider>(context, listen: false);
+        _authProvider.addListener(checkLogin);
+        _authProvider.initialize();
+        // Move any other code that requires the context here
+      });
     });
+
+    // WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((timeStamp){
+    //   _authProvider = context.read<AuthProvider>();
+    //  _authProvider.addListener(() {
+    //     checkLogin();
+    //   });
+    //   _authProvider.initialize();
+    // });
+    // Future.delayed(const Duration(seconds: 3), () {
+    //   Navigator.pushReplacementNamed(context, "/staterpage");
+    // });
+    // Future.microtask(() => {
+    //       context.read<AuthProvider>().addListener(() {
+    //         checkLogin();
+    //       }),
+    //       context.read<AuthProvider>().initialize()
+    // });
   }
 
+  void checkLogin(){
+    if (_authProvider.initStatus == 2) {
+      Navigator.pushReplacementNamed(context, "/indexapp");
+    } else if (_authProvider.initStatus == 0) {
+      Navigator.pushReplacementNamed(context, "/staterpage");
+    }
+  }
+  @override
+  void dispose() {
+    // _authProvider.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
