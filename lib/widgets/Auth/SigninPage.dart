@@ -23,10 +23,13 @@ class _SigninPageState extends State<SigninPage> {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((timeStamp) {
-      _authProvider = context.read<AuthProvider>();
-      _authProvider.addListener(() {
-        loginStatus();
-      });
+      if (mounted) {
+        // Add this line
+        _authProvider = context.read<AuthProvider>();
+        _authProvider.addListener(() {
+          loginStatus();
+        });
+      }
     });
   }
 
@@ -35,10 +38,10 @@ class _SigninPageState extends State<SigninPage> {
     // TODO: implement dispose
     _emailController.dispose();
     _passwordController.dispose();
-    _authProvider.dispose();
+    _authProvider.removeListener(() {});
     super.dispose();
   }
-
+  
   void loginStatus() {
     if (_authProvider.loginStatus == 2) {
       Navigator.pushNamed(context, '/indexapp');
@@ -65,13 +68,16 @@ class _SigninPageState extends State<SigninPage> {
     }
   }
 
-  Future<void> login() async {
+
+  @override
+  Widget build(BuildContext context) {
+    void login() {
     if (mounted) {
       try {
-              await _authProvider.signInWithEmailAndPassword(
-        email: _emailController.text,
-        password: _passwordController.text,
-      );
+        _authProvider.signInWithEmailAndPassword(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
       } catch (e) {
         showDialog(
             context: context,
@@ -89,7 +95,6 @@ class _SigninPageState extends State<SigninPage> {
               );
             });
       }
-
     } else {
       showDialog(
           context: context,
@@ -107,16 +112,8 @@ class _SigninPageState extends State<SigninPage> {
             );
           });
     }
-
-    // navigateTo();
   }
 
-  void navigateTo() {
-    Navigator.pushNamed(context, '/indexapp');
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -207,10 +204,7 @@ class _SigninPageState extends State<SigninPage> {
                 height: 10,
               ),
               ElevatedButton(
-                  onPressed: () {
-                    login();
-                    // Navigator.pushNamed(context, '/indexapp');
-                  },
+                  onPressed:login,
                   child: const Text("Sign in")),
               const SizedBox(
                   height: 50,

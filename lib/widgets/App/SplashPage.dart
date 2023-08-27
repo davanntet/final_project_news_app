@@ -15,12 +15,13 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(Duration.zero, () {
-        _authProvider = Provider.of<AuthProvider>(context, listen: false);
-        _authProvider.addListener(checkLogin);
-        _authProvider.initialize();
-        // Move any other code that requires the context here
-      });
+      if (mounted) {
+        Future.delayed(const Duration(milliseconds: 75), () {
+          _authProvider = context.read<AuthProvider>();
+          _authProvider.addListener(checkLogin);
+          _authProvider.initialize();
+        });
+      }
     });
 
     // WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((timeStamp){
@@ -41,18 +42,20 @@ class _SplashPageState extends State<SplashPage> {
     // });
   }
 
-  void checkLogin(){
+  void checkLogin() {
     if (_authProvider.initStatus == 2) {
       Navigator.pushReplacementNamed(context, "/indexapp");
     } else if (_authProvider.initStatus == 0) {
       Navigator.pushReplacementNamed(context, "/staterpage");
     }
   }
+
   @override
   void dispose() {
-    // _authProvider.dispose();
+    _authProvider.removeListener(() {});
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

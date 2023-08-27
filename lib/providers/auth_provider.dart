@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider extends ChangeNotifier {
-  late final SharedPreferences prefs;
   int _loginStatus = 1;
   int _registerStatus = 1;
   int _initStatus = 1;
@@ -17,9 +15,7 @@ class AuthProvider extends ChangeNotifier {
       {required String email, required String password}) async {
     _loginStatus = 1;
     notifyListeners();
-
     try {
-      prefs = await SharedPreferences.getInstance();
       final result = await _instance.signInWithEmailAndPassword(
         email: email,
         password: password,
@@ -60,16 +56,12 @@ class AuthProvider extends ChangeNotifier {
     _registerStatus = 1;
     notifyListeners();
     try {
-      prefs = await SharedPreferences.getInstance();
       final credential = await _instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
       final user = credential.user;
       if (user != null) {
-        final token = await user.getIdToken();
-
-        await prefs.setString("AccessToken", token.toString());
         await FirebaseFirestore.instance
             .collection('users')
             .doc(credential.user!.uid)
@@ -79,15 +71,17 @@ class AuthProvider extends ChangeNotifier {
           'password': password,
           'uid': credential.user!.uid,
         });
-
         _registerStatus = 2;
       } else {
         _registerStatus = 0;
       }
+      notifyListeners();
     } on auth.FirebaseAuthException catch (e) {
-      _registerStatus = -1;
+      _registerStatus = 0;
+      notifyListeners();
     } catch (e) {
-      _registerStatus = -1;
+      _registerStatus = 0;
+      notifyListeners();
     }
   }
 
@@ -105,7 +99,6 @@ class AuthProvider extends ChangeNotifier {
       }
     } catch (e) {
       _initStatus = 0;
-      await prefs.remove("AccessToken");
       notifyListeners();
     }
   }
