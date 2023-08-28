@@ -16,29 +16,12 @@ class AuthProvider extends ChangeNotifier {
     _loginStatus = 1;
     notifyListeners();
     try {
-      final result = await _instance.signInWithEmailAndPassword(
+       await _instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      final user = result.user;
-      if (user != null) {
         _loginStatus = 2;
-      } else {
-        _loginStatus = 0;
-      }
       notifyListeners();
-      // DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('users').doc(result.user?.uid).get();
-      // if (documentSnapshot.exists) {
-      //   Map<String, dynamic> userData = documentSnapshot.data() as Map<String, dynamic>;
-      //   // Access the user data
-      //   String username = userData['username'];
-      //   String email = userData['email'];
-      //   // Do something with the retrieved user data
-      //   print('Username: $username');
-      //   print('Email: $email');
-      // } else {
-      //   print('User document does not exist');
-      // }
     } on auth.FirebaseAuthException catch (e) {
       _loginStatus = 0;
       notifyListeners();
@@ -60,21 +43,7 @@ class AuthProvider extends ChangeNotifier {
         email: email,
         password: password,
       );
-      final user = credential.user;
-      if (user != null) {
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(credential.user!.uid)
-            .set({
-          'username': username,
-          'email': email,
-          'password': password,
-          'uid': credential.user!.uid,
-        });
-        _registerStatus = 2;
-      } else {
-        _registerStatus = 0;
-      }
+      _registerStatus = 2;
       notifyListeners();
     } on auth.FirebaseAuthException catch (e) {
       _registerStatus = 0;

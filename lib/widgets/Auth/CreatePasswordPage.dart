@@ -17,25 +17,62 @@ class CreatePasswordPage extends StatefulWidget {
 }
 
 class _CreatePasswordPageState extends State<CreatePasswordPage> {
-  final _passwordController = TextEditingController();
+  late final TextEditingController _passwordController;
+  late final TextEditingController _confirmController;
+  late final AuthProvider _authProvider;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _passwordController = TextEditingController();
+    _confirmController = TextEditingController();
 
-  final _confirmController = TextEditingController();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _authProvider = context.read<AuthProvider>();
+      _authProvider.addListener(registerStatus);
+    });
+  }
 
-  void register() {
-    context.read<AuthProvider>().signUpWithEmailAndPassword(
-        username: widget.username,
-        email: widget.email,
-        password: _passwordController.text);
+  void registerStatus() {
+    if (_authProvider.registerStatus == 2) {
+      Navigator.pushNamed(context, '/indexapp');
+    } else if (_authProvider.registerStatus == 0) {
+      Navigator.pop(context);
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: const Text("Error"),
+                content: const Text("Email has been used."),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text("OK"))
+                ],
+              ));
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) =>
+              const Center(child: CircularProgressIndicator.adaptive()));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    void register() {
+      context.read<AuthProvider>().signUpWithEmailAndPassword(
+          username: widget.username,
+          email: widget.email,
+          password: _passwordController.text);
+    }
     return Scaffold(
       appBar: AppBar(
-                  elevation: 0,
+        elevation: 0,
         scrolledUnderElevation: 0,
-          backgroundColor: Colors.white,
-          surfaceTintColor: Colors.white,
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -102,7 +139,6 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  // Navigator.pushNamed(context, '/signin');
                   register();
                 },
                 child: const Text("Save")),
