@@ -229,9 +229,9 @@ class VisitProfile extends StatelessWidget {
                 ),
                 //card
                 ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   physics: const NeverScrollableScrollPhysics(),
                   reverse: true,
+                  padding: EdgeInsets.zero,
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   itemCount: data_info.data_info_list.length,
@@ -255,7 +255,7 @@ class VisitProfile extends StatelessWidget {
               },
               highlightColor: AppColors.blue.withOpacity(0.1),
               icon: const Icon(
-                Icons.arrow_back_ios,
+                Icons.arrow_back,
                 size: 25,
                 color: AppColors.grey,
               ),

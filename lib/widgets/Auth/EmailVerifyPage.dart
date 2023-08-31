@@ -1,6 +1,7 @@
 // ignore: file_names
 import 'package:final_project_news_app/components/Form/ExpireTime.dart';
 import 'package:final_project_news_app/components/Form/PinInput.dart';
+import 'package:final_project_news_app/components/simple/simple_appbar.dart';
 import 'package:final_project_news_app/constraint/AppColors.dart';
 import 'package:flutter/material.dart';
 
@@ -10,18 +11,7 @@ class EmailVerifyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          highlightColor: AppColors.blue.withOpacity(0.1),
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            size: 20,
-          ),
-        ),
-      ),
+      appBar: SimpleAppBar(context, null),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -91,6 +81,20 @@ class EmailVerifyPage extends StatelessWidget {
                   ),
                   const ExpireTime(),
                   //button to verify
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/emailverify');
+                    },
+                    child: const Text(
+                      "Resend Code",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xff4D6EFD),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -103,7 +107,7 @@ class EmailVerifyPage extends StatelessWidget {
                         Navigator.pushNamed(context, '/newpassword');
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: const Color(0xff4D6EFD),
+                        backgroundColor: AppColors.blue,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -121,20 +125,7 @@ class EmailVerifyPage extends StatelessWidget {
                     height: 10,
                   ),
                   //resend code
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.pushNamed(context, '/emailverify');
-                    },
-                    child: const Text(
-                      "Resend Code",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xff4D6EFD),
-                      ),
-                    ),
-                  ),
+                  
                   //expire time
                 ],
               ),

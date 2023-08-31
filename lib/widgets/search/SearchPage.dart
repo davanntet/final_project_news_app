@@ -144,7 +144,6 @@ class SearchPage extends StatelessWidget {
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               width: double.infinity,
-              alignment: Alignment.topLeft,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -169,11 +168,10 @@ class SearchPage extends StatelessWidget {
                 ],
               ),
             ),
-
             ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
               physics: const NeverScrollableScrollPhysics(),
               reverse: true,
+              padding: EdgeInsets.zero,
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               itemCount: data_info.data_info_list.length,

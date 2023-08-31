@@ -122,7 +122,6 @@ class SearchMethod extends StatelessWidget {
                 ),
               ),
               ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
               physics: const NeverScrollableScrollPhysics(),
               reverse: true,
               shrinkWrap: true,

@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import '../../constraint/AppColors.dart';
 
 class ProfileSetting extends StatefulWidget {
-  const ProfileSetting(
-      {super.key,
-      required this.data,});
+  const ProfileSetting({
+    super.key,
+    required this.data,
+  });
   final data_setting_form data;
   @override
   State<ProfileSetting> createState() => _ProfileSettingState();

@@ -1,12 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider extends ChangeNotifier {
-  int _loginStatus = 1;
-  int _registerStatus = 1;
-  int _initStatus = 1;
+  int _loginStatus = 100;
+  int _registerStatus = 100;
+  int _initStatus = 100;
   int get loginStatus => _loginStatus;
   int get registerStatus => _registerStatus;
   int get initStatus => _initStatus;
@@ -22,7 +20,7 @@ class AuthProvider extends ChangeNotifier {
       );
         _loginStatus = 2;
       notifyListeners();
-    } on auth.FirebaseAuthException catch (e) {
+    } on auth.FirebaseAuthException catch (_) {
       _loginStatus = 0;
       notifyListeners();
     } catch (e) {
@@ -39,13 +37,9 @@ class AuthProvider extends ChangeNotifier {
     _registerStatus = 1;
     notifyListeners();
     try {
-      final credential = await _instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
       _registerStatus = 2;
       notifyListeners();
-    } on auth.FirebaseAuthException catch (e) {
+    } on auth.FirebaseAuthException catch (_) {
       _registerStatus = 0;
       notifyListeners();
     } catch (e) {

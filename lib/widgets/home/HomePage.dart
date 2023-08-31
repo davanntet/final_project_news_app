@@ -111,8 +111,9 @@ class HomePage extends StatelessWidget {
             ),
             //card
             ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+
               physics: const NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.zero,
               reverse: true,
               shrinkWrap: true,
               scrollDirection: Axis.vertical,

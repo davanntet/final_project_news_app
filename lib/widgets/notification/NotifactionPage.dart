@@ -29,35 +29,35 @@ class NotificationPage extends StatelessWidget {
         ),
         Expanded(
           child: ListView.separated(
+            padding: EdgeInsets.zero,
+
               itemBuilder: (context, index) {
                 final data = data_notification.datas[index];
-                return InkWell(
-                  onTap: () => {},
-                  highlightColor: AppColors.blue.withOpacity(0.1),
-                  hoverColor: AppColors.blue.withOpacity(0.5),
-                  splashColor: AppColors.blue.withOpacity(0.15),
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 25,
-                      backgroundImage: AssetImage(data.image),
-                    ),
-                    title: Text(
-                      data.title,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          data.description,
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                        Text(
-                          data.time,
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                      ],
-                    ),
+                return ListTile(
+                  onTap: (){
+
+                  },
+                  splashColor: AppColors.blue.withOpacity(0.1),
+                  leading: CircleAvatar(
+                    radius: 25,
+                    backgroundImage: AssetImage(data.image),
+                  ),
+                  title: Text(
+                    data.title,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        data.description,
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                      Text(
+                        data.time,
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                    ],
                   ),
                 );
               },

@@ -26,7 +26,7 @@ class _ExpireTimeState extends State<ExpireTime> {
             tween: Tween(begin: 60.0, end: 0.0),
             duration: const Duration(seconds: 60),
             builder: (context, value, child) =>
-                Text("00:" + value.toStringAsFixed(00),
+                Text("00:${value.toStringAsFixed(00)}",
                     style: const TextStyle(
                       color: AppColors.blue,
                       fontWeight: FontWeight.bold,

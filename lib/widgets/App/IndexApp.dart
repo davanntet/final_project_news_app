@@ -1,5 +1,5 @@
+// ignore: file_names
 import 'package:final_project_news_app/constraint/AppColors.dart';
-import 'package:final_project_news_app/widgets/follow/followe.dart';
 import 'package:final_project_news_app/widgets/follow/followpage.dart';
 import 'package:final_project_news_app/widgets/home/HomePage.dart';
 import 'package:final_project_news_app/widgets/profile/ProfilePage.dart';

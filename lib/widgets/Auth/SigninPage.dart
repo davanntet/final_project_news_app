@@ -4,6 +4,7 @@ import 'package:final_project_news_app/constraint/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../components/simple/show_message.dart';
 import '../../providers/auth_provider.dart';
 
 class SigninPage extends StatefulWidget {
@@ -17,6 +18,7 @@ class _SigninPageState extends State<SigninPage> {
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
   late final AuthProvider _authProvider;
+int k=0;
   @override
   void initState() {
     super.initState();
@@ -38,18 +40,23 @@ class _SigninPageState extends State<SigninPage> {
     // TODO: implement dispose
     _emailController.dispose();
     _passwordController.dispose();
-    _authProvider.removeListener(() {});
+    _authProvider.removeListener(loginStatus);
     super.dispose();
   }
-  
-  void loginStatus() {
+
+  void loginStatus(){
     if (_authProvider.loginStatus == 2) {
+      Navigator.pop(context);
       Navigator.pushNamed(context, '/indexapp');
     } else if (_authProvider.loginStatus == 0) {
-      Navigator.pop(context);
+      k--;
+        Navigator.pop(context);
       showDialog(
+          barrierDismissible: false,
+          // barrierColor: Colors.transparent,
           context: context,
-          builder: (context) => AlertDialog(
+          builder: (context){
+            return AlertDialog(
                 title: const Text("Error"),
                 content: const Text("Email or password is incorrect"),
                 actions: [
@@ -59,60 +66,50 @@ class _SigninPageState extends State<SigninPage> {
                       },
                       child: const Text("OK"))
                 ],
-              ));
-    } else {
-      showDialog(
+              );
+    }
+      );
+    } else if(_authProvider.loginStatus == 1){
+      if(k==0) {
+        k++;
+        showDialog(
+          // barrierColor: Colors.transparent,
+          barrierDismissible: false,
           context: context,
           builder: (context) =>
-              const Center(child: CircularProgressIndicator.adaptive()));
+          const Center(child: CircularProgressIndicator.adaptive()));
+
+      }
+      
     }
+    
   }
 
 
   @override
   Widget build(BuildContext context) {
     void login() {
-    if (mounted) {
-      try {
-        _authProvider.signInWithEmailAndPassword(
-          email: _emailController.text,
-          password: _passwordController.text,
-        );
-      } catch (e) {
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: const Text("Error"),
-                content: const Text("Something Went Wrong"),
-                actions: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text("OK"))
-                ],
-              );
-            });
-      }
-    } else {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text("Error"),
-              content: const Text("Something Went Wrong"),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text("OK"))
-              ],
-            );
-          });
+      _authProvider.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
     }
-  }
+
+    void validate() {
+      final bool ev = ValidatePattern.emailValidation.hasMatch(_emailController.text);
+      final bool pv = _passwordController.text.length>=8;
+      if(ev&&pv){
+        login();
+      }else if(ev!=pv){
+        if(!ev){
+          ShowMessage(context, "Email Privacy", "Please enter a valid email");
+        }else if(!pv){
+          ShowMessage(context, "Password Privacy", "Password must be at least 8 characters");
+        }
+      }else{
+        ShowMessage(context, "Privacy", "Please enter a valid email and password must be at least 8 characters");
+      }
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -172,7 +169,7 @@ class _SigninPageState extends State<SigninPage> {
                     ),
                     FormInput(
                       prefixIcon: Icons.security_outlined,
-                      labelText: "Email",
+                      labelText: "Password",
                       hintText: "Enter your password",
                       obscureText: true,
                       controller: _passwordController,
@@ -204,7 +201,7 @@ class _SigninPageState extends State<SigninPage> {
                 height: 10,
               ),
               ElevatedButton(
-                  onPressed:login,
+                  onPressed:validate,
                   child: const Text("Sign in")),
               const SizedBox(
                   height: 50,
@@ -269,7 +266,7 @@ class _SigninPageState extends State<SigninPage> {
                       SizedBox(
                         width: 10,
                       ),
-                      Text("Continue with Google",
+                      Text("Continue with Facebook",
                           style: TextStyle(color: Colors.black))
                     ],
                   )),

@@ -22,10 +22,12 @@ import '../widgets/search/TredingTopic.dart';
 class Routers {
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
+      case '/':
+      return MaterialPageRoute(builder: (_)=>const SplashPage());
       case '/staterpage':
         return MaterialPageRoute(builder: (_) => const StarterPage());
       case '/signin':
-        return MaterialPageRoute(builder: (_) => SigninPage());
+        return MaterialPageRoute(builder: (_) => const SigninPage());
       case '/signup':
         return MaterialPageRoute(builder: (_) => SignUP());
       case '/createpassword':
@@ -48,7 +50,7 @@ class Routers {
       case '/comment':
         return MaterialPageRoute(builder: (_) => const CommentHomePage());
       case '/trendingtopic':
-        return MaterialPageRoute(builder: (_) => const TredingTopic());
+        return MaterialPageRoute(builder: (_) =>  const TredingTopic());
       case '/recommandation':
         return MaterialPageRoute(builder: (_) => const NewRecommandation());
       case '/follower':
@@ -60,7 +62,7 @@ class Routers {
       case '/bookmark':
         return MaterialPageRoute(builder: (_) => const BookmarkPage());
       case '/visitprofile':
-        return MaterialPageRoute(builder: (_) => VisitProfile());
+        return MaterialPageRoute(builder: (_) => const VisitProfile());
       default:
         return MaterialPageRoute(builder: (_) => const SplashPage());
     }

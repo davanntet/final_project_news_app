@@ -1,4 +1,4 @@
-import 'package:final_project_news_app/constraint/AppColors.dart';
+// ignore: file_names
 import 'package:flutter/material.dart';
 
 import '../../components/Form/FormInput.dart';
@@ -11,16 +11,7 @@ class NewPasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          highlightColor: AppColors.blue.withOpacity(0.1),
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            size: 20,
-          ),
-        ),
+        
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -63,7 +54,9 @@ class NewPasswordPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              ElevatedButton(onPressed: () {}, child: const Text("Save")),
+              ElevatedButton(onPressed: () {
+                Navigator.pushReplacementNamed(context, '/signin');
+              }, child: const Text("Save")),
             ],
           ),
         ),

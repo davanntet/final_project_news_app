@@ -1,6 +1,5 @@
 import 'package:final_project_news_app/constraint/AppColors.dart';
 import 'package:final_project_news_app/routes/Routers.dart';
-import 'package:final_project_news_app/widgets/App/SplashPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -19,18 +18,18 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
       ],
-      child:const MainApp(),
+      child:MainApp(),
       ) 
   );
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
+   const MainApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: "/",
       onGenerateRoute: Routers.getRoute,
       theme: ThemeData(
         useMaterial3: true,
@@ -147,12 +146,8 @@ class MainApp extends StatelessWidget {
             elevation: MaterialStateProperty.all(0),
             overlayColor: MaterialStateProperty.all(AppColors.blue.withOpacity(0.1)),
 
-
-        ),
       ),
       ),
-      home: const Scaffold(
-        body: SplashPage(),
       ),
     );
   }

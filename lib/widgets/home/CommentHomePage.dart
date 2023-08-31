@@ -1,3 +1,4 @@
+import 'package:final_project_news_app/components/simple/simple_appbar.dart';
 import 'package:final_project_news_app/constraint/AppColors.dart';
 import 'package:flutter/material.dart';
 
@@ -11,17 +12,25 @@ class CommentHomePage extends StatefulWidget {
 class _CommentHomePageState extends State<CommentHomePage> {
   final _commentController = TextEditingController();
   bool _isComment = false;
+  final int _k=0;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    //use keyboard listener
-
-    _commentController.addListener(() {
-      setState(() {
+    _commentController.addListener(keyboardController);
+  }
+  void keyboardController(){
+          if(View.of(context).viewInsets.bottom==0){
+        setState((){
         _isComment = _commentController.text.isNotEmpty;
-      });
-    });
+        if(_k==0) _isComment = true;
+        });
+      }else{
+        setState((){
+        _isComment = true;
+        });
+      }
   }
 
   @override
@@ -35,19 +44,7 @@ class _CommentHomePageState extends State<CommentHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            highlightColor: const Color(0xff4D6EFD).withOpacity(0.1),
-            icon: const Icon(
-              Icons.arrow_back,
-              size: 25,
-              color: AppColors.black,
-            ),
-          ),
-        ),
+        appBar: SimpleAppBar(context,null),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -187,7 +184,7 @@ class _CommentHomePageState extends State<CommentHomePage> {
                         ),
                       ],
                     ),
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width - 30,
                       child: const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -276,10 +273,12 @@ class _CommentHomePageState extends State<CommentHomePage> {
           ),
         ),
         bottomNavigationBar: BottomAppBar(
-          height: _isComment ? 500 : 60,
+          height: _isComment ? MediaQuery.of(context).viewInsets.bottom+50:50,
+          color: AppColors.bluewhite,
           child: Container(
             height: 60,
             padding: const EdgeInsets.symmetric(horizontal: 15),
+            alignment: Alignment.topCenter,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -302,7 +301,7 @@ class _CommentHomePageState extends State<CommentHomePage> {
                     Icon(
                       Icons.camera_alt_outlined,
                       size: 25,
-                      color: AppColors.greyscale,
+                      color: AppColors.blue,
                     ),
                     SizedBox(
                       width: 20,
@@ -310,7 +309,7 @@ class _CommentHomePageState extends State<CommentHomePage> {
                     Icon(
                       Icons.send_outlined,
                       size: 25,
-                      color: AppColors.greyscale,
+                      color: AppColors.blue,
                     ),
                   ],
                 ),

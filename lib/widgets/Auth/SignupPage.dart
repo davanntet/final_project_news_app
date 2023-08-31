@@ -3,15 +3,34 @@
 import 'package:flutter/material.dart';
 
 import '../../components/Form/FormInput.dart';
+import '../../components/simple/show_message.dart';
 import '../../constraint/AppColors.dart';
 
 class SignUP extends StatelessWidget {
   SignUP({super.key});
   final _emailController = TextEditingController();
   final _fullname = TextEditingController();
-  
+
   @override
   Widget build(BuildContext context) {
+    void validate() {
+      final bool ev = ValidatePattern.emailValidation.hasMatch(_emailController.text);
+      final bool fn = _fullname.text.isNotEmpty;
+      if(ev&&fn){
+        Navigator.pushNamed(context, '/createpassword',arguments: {
+          'email':_emailController.text,
+          'username':_fullname.text
+        });
+      }else if(ev!=fn){
+        if(!ev){
+          ShowMessage(context, "SignUP", "Please enter a valid email");
+        }else if(!fn){
+          ShowMessage(context, "SignUP", "Fullname must be not empty");
+        }
+      }else{
+        ShowMessage(context, "SignUP", "Please enter a valid email and fullname before continue");
+      }
+    }
     return Scaffold(
       appBar: AppBar(
                   elevation: 0,
@@ -82,12 +101,7 @@ class SignUP extends StatelessWidget {
                 height: 10,
               ),
               ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/createpassword',arguments: {
-                      'email':_emailController.text,
-                      'username':_fullname.text
-                    });
-                  },
+                  onPressed: validate,
                   child: const Text("Sign UP")),
               const SizedBox(
                   height: 50,

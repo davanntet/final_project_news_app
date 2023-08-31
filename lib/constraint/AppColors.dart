@@ -12,3 +12,8 @@ class AppColors {
   static const white = Color(0xffFFFFFF);
   static const bluewhite = Color(0xffF5F7FB);
 }
+
+class ValidatePattern {
+  static final RegExp emailValidation =
+      RegExp(r'^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$');
+}

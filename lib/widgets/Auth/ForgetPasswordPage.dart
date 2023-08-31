@@ -1,5 +1,5 @@
 import 'package:final_project_news_app/components/Form/FormInput.dart';
-import 'package:final_project_news_app/constraint/AppColors.dart';
+import 'package:final_project_news_app/components/simple/simple_appbar.dart';
 import 'package:flutter/material.dart';
 
 class ForgetPasswordPage extends StatelessWidget {
@@ -8,18 +8,7 @@ class ForgetPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          highlightColor: AppColors.blue.withOpacity(0.1),
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            size: 20,
-          ),
-        ),
-      ),
+      appBar:SimpleAppBar(context, null),
       body: SingleChildScrollView(
         child: Column(
           children: [

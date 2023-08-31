@@ -1,7 +1,7 @@
+import 'package:final_project_news_app/components/simple/simple_appbar.dart';
 import 'package:final_project_news_app/models/virtualdata/data_user.dart';
 import 'package:flutter/material.dart';
 
-import '../../constraint/AppColors.dart';
 
 class Following extends StatelessWidget {
   const Following({super.key});
@@ -39,23 +39,7 @@ class Following extends StatelessWidget {
       );
     } else {
       return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          scrolledUnderElevation: 0,
-          backgroundColor: Colors.white,
-          surfaceTintColor: Colors.white,
-          leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          highlightColor: AppColors.blue.withOpacity(0.1),
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            size: 20,
-            color: AppColors.black,
-          ),
-        ),
-      ),
+        appBar: SimpleAppBar(context, "Following(134"),
         body: ListView.builder(
           shrinkWrap: true,
           itemCount: data_user.datas.length,

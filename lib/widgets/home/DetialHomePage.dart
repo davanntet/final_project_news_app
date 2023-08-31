@@ -223,13 +223,18 @@ class DetailHomePage extends StatelessWidget {
   }
 }
 
+
+
+
+
+
 void shareMethod(BuildContext context) {
   //show share method as snackbar have stories,whatapp,facebook,twitter,line,link copy,more
   final double wdth = MediaQuery.of(context).size.width / 4 - 5;
   showModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
-        return Container(
+        return SizedBox(
           height: wdth * 3,
           child: Column(
             children: [

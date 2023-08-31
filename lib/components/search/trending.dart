@@ -99,7 +99,6 @@ class Trending extends StatelessWidget {
             ),
           ],
         ),
-        
       ),
     );
   }

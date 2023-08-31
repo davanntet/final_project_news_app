@@ -15,30 +15,15 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
         Future.delayed(const Duration(milliseconds: 75), () {
           _authProvider = context.read<AuthProvider>();
           _authProvider.addListener(checkLogin);
           _authProvider.initialize();
         });
-      }
+    
     });
-
-    // WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((timeStamp){
-    //   _authProvider = context.read<AuthProvider>();
-    //  _authProvider.addListener(() {
-    //     checkLogin();
-    //   });
-    //   _authProvider.initialize();
-    // });
-    // Future.delayed(const Duration(seconds: 3), () {
+    // Future.delayed(Duration(seconds: 2),(){
     //   Navigator.pushReplacementNamed(context, "/staterpage");
-    // });
-    // Future.microtask(() => {
-    //       context.read<AuthProvider>().addListener(() {
-    //         checkLogin();
-    //       }),
-    //       context.read<AuthProvider>().initialize()
     // });
   }
 
@@ -52,7 +37,9 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   void dispose() {
-    _authProvider.removeListener(() {});
+
+    _authProvider.removeListener(checkLogin);
+
     super.dispose();
   }
 

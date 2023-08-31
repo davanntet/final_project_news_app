@@ -1,10 +1,12 @@
 // ignore: file_names
 
 import 'package:final_project_news_app/components/Form/FormInput.dart';
+import 'package:final_project_news_app/components/simple/simple_appbar.dart';
 import 'package:final_project_news_app/constraint/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../components/simple/show_message.dart';
 import '../../providers/auth_provider.dart';
 
 class CreatePasswordPage extends StatefulWidget {
@@ -32,7 +34,14 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
       _authProvider.addListener(registerStatus);
     });
   }
-
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _passwordController.dispose();
+    _confirmController.dispose();
+    _authProvider.removeListener(registerStatus);
+    super.dispose();
+  }
   void registerStatus() {
     if (_authProvider.registerStatus == 2) {
       Navigator.pushNamed(context, '/indexapp');
@@ -51,7 +60,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                       child: const Text("OK"))
                 ],
               ));
-    } else {
+    } else if(_authProvider.registerStatus == 1){
       showDialog(
           context: context,
           builder: (context) =>
@@ -67,23 +76,27 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
           email: widget.email,
           password: _passwordController.text);
     }
+    void validation(){
+      final bool password = _passwordController.text.length>= 8;
+      final bool confirm = _confirmController.text.length>= 8;
+      if(password&&confirm){
+        if(_passwordController.text==_confirmController.text){
+          register();
+        }else{
+          ShowMessage(context, "Create Password", "Password and Confirm Password must be same");
+        }
+      }else if(password!=confirm){
+        if(!password){
+          ShowMessage(context, "Create Password", "Password must be at least 8 characters");
+        }else if(!confirm){
+          ShowMessage(context, "Create Password", "Confirm Password must be at least 8 characters");
+        }
+      }else{
+        ShowMessage(context, "Create Password", "Password and Confirm Password must be at least 8 characters");
+      }
+    }
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        scrolledUnderElevation: 0,
-        backgroundColor: Colors.white,
-        surfaceTintColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          highlightColor: AppColors.blue.withOpacity(0.1),
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            size: 20,
-          ),
-        ),
-      ),
+      appBar: SimpleAppBar(context, null),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -138,9 +151,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
               height: 10,
             ),
             ElevatedButton(
-                onPressed: () {
-                  register();
-                },
+                onPressed: validation,
                 child: const Text("Save")),
             const SizedBox(),
           ],

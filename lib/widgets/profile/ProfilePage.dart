@@ -171,9 +171,8 @@ void confirm(BuildContext context,callback){
                 },
                 child: const Text("Cancel")),
             TextButton(
-                onPressed: () async {
-                  Navigator.of(context).pop();
-                  await callback();
+                onPressed: (){
+                  Navigator.pop(context);
                   Navigator.pushNamed(context, '/staterpage');
                 },
                 child: const Text("Logout"))
