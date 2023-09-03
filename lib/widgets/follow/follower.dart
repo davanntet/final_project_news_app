@@ -15,6 +15,7 @@ class Follower extends StatelessWidget {
     if (can) {
       return Scaffold(
         body: ListView.builder(
+          padding: EdgeInsets.zero,
           shrinkWrap: true,
           itemCount: data_user.datas.length,
           itemBuilder: (context, index) {
@@ -42,6 +43,7 @@ class Follower extends StatelessWidget {
       return Scaffold(
         appBar: SimpleAppBar(context, "Follower(60)"),
         body: ListView.builder(
+          padding: EdgeInsets.zero,
           shrinkWrap: true,
           itemCount: data_user.datas.length,
           reverse: true,

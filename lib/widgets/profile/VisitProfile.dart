@@ -115,7 +115,7 @@ class VisitProfile extends StatelessWidget {
                             Navigator.pushNamed(context, '/follower');
                           },
                           child: Text(
-                            "0",
+                            "60",
                             style: Theme.of(context).textTheme.labelSmall,
                           ),
                         ),
@@ -139,7 +139,7 @@ class VisitProfile extends StatelessWidget {
                             Navigator.pushNamed(context, '/following');
                           },
                           child: Text(
-                            "0",
+                            "134",
                             style: Theme.of(context).textTheme.labelSmall,
                           ),
                         ),

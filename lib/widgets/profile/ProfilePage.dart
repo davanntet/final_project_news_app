@@ -32,7 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
             alignment: Alignment.centerLeft,
             child: Text(
               "Profile",
-              style: Theme.of(context).textTheme.labelMedium,
+              style: Theme.of(context).textTheme.labelSmall,
               textAlign: TextAlign.start,
             ),
           ),
@@ -84,7 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             Navigator.pushNamed(context, '/follower');
                           },
                           icon: Text(
-                            "0",
+                            "60",
                             style: Theme.of(context).textTheme.labelSmall,
                           ),
                         ),
@@ -112,7 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             Navigator.pushNamed(context, '/following');
                           },
                           icon: Text(
-                            "0",
+                            "134",
                             style: Theme.of(context).textTheme.labelSmall,
                           ),
                         ),
@@ -171,7 +171,8 @@ void confirm(BuildContext context,callback){
                 },
                 child: const Text("Cancel")),
             TextButton(
-                onPressed: (){
+                onPressed: () async{
+                  await callback();
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/staterpage');
                 },

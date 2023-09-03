@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
                       margin: const EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
                         "Discover Treding\nNews",
-                        style: Theme.of(context).textTheme.labelMedium,
+                        style: Theme.of(context).textTheme.labelSmall,
                         textAlign: TextAlign.start,
                       ),
                     ),
@@ -80,7 +80,7 @@ class HomePage extends StatelessWidget {
                 children: [
                   Text(
                     "For You",
-                    style: Theme.of(context).textTheme.labelMedium,
+                    style: Theme.of(context).textTheme.labelSmall,
                     textAlign: TextAlign.start,
                   ),
                   InkWell(

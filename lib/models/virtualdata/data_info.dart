@@ -72,6 +72,54 @@ class data_info {
       favorite: 100,
       comment: 100,
     ),
+    data_info_form(
+      image: 'assets/homes/img_7.png',
+      title: 'The best way to learn',
+      description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam id tincidunt dapibus, elit arcu tincidunt arcu, id lacinia velit nisl eget nunc. ',
+      category: 'Education',
+      date: '12/12/2021',
+      time: '1 hour ago',
+      time_read: '5 min read',
+      favorite: 100,
+      comment: 100,
+    ),
+    data_info_form(
+      image: 'assets/homes/img_8.png',
+      title: 'The best way to learn',
+      description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam id tincidunt dapibus, elit arcu tincidunt arcu, id lacinia velit nisl eget nunc. ',
+      category: 'Education',
+      date: '12/12/2021',
+      time: '1 hour ago',
+      time_read: '5 min read',
+      favorite: 100,
+      comment: 100,
+    ),
+    data_info_form(
+      image: 'assets/homes/img_9.png',
+      title: 'The best way to learn',
+      description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam id tincidunt dapibus, elit arcu tincidunt arcu, id lacinia velit nisl eget nunc. ',
+      category: 'Education',
+      date: '12/12/2021',
+      time: '1 hour ago',
+      time_read: '5 min read',
+      favorite: 100,
+      comment: 100,
+    ),
+    data_info_form(
+      image: 'assets/homes/img_10.png',
+      title: 'The best way to learn',
+      description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam id tincidunt dapibus, elit arcu tincidunt arcu, id lacinia velit nisl eget nunc. ',
+      category: 'Education',
+      date: '12/12/2021',
+      time: '1 hour ago',
+      time_read: '5 min read',
+      favorite: 100,
+      comment: 100,
+    ),
   ];
 }
 

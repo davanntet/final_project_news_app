@@ -57,7 +57,7 @@ int k=0;
           context: context,
           builder: (context){
             return AlertDialog(
-                title: const Text("Error"),
+                title: const Text("SignIN"),
                 content: const Text("Email or password is incorrect"),
                 actions: [
                   TextButton(
@@ -102,12 +102,12 @@ int k=0;
         login();
       }else if(ev!=pv){
         if(!ev){
-          ShowMessage(context, "Email Privacy", "Please enter a valid email");
+          ShowMessage(context, "SignIN", "Please enter a valid email");
         }else if(!pv){
-          ShowMessage(context, "Password Privacy", "Password must be at least 8 characters");
+          ShowMessage(context, "SignIN", "Password must be at least 8 characters");
         }
       }else{
-        ShowMessage(context, "Privacy", "Please enter a valid email and password must be at least 8 characters");
+        ShowMessage(context, "SignIN", "Please enter a valid email and password must be at least 8 characters");
       }
     }
 

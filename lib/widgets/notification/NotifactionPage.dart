@@ -16,7 +16,7 @@ class NotificationPage extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text(
             "Notification",
-            style: Theme.of(context).textTheme.labelMedium,
+            style: Theme.of(context).textTheme.labelSmall,
             textAlign: TextAlign.start,
           ),
         ),

@@ -37,6 +37,10 @@ class AuthProvider extends ChangeNotifier {
     _registerStatus = 1;
     notifyListeners();
     try {
+      await _instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
       _registerStatus = 2;
       notifyListeners();
     } on auth.FirebaseAuthException catch (_) {

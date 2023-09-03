@@ -15,16 +15,13 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-        Future.delayed(const Duration(milliseconds: 75), () {
+        Future.delayed(const Duration(milliseconds: 15), () {
           _authProvider = context.read<AuthProvider>();
           _authProvider.addListener(checkLogin);
           _authProvider.initialize();
         });
     
     });
-    // Future.delayed(Duration(seconds: 2),(){
-    //   Navigator.pushReplacementNamed(context, "/staterpage");
-    // });
   }
 
   void checkLogin() {

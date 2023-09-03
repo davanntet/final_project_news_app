@@ -8,6 +8,7 @@ class Followe extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
+        padding: EdgeInsets.zero,
         shrinkWrap: true,
         itemCount: data_user.datas.length,
         itemBuilder: (context, index) {

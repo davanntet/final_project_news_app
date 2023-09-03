@@ -14,6 +14,7 @@ class Following extends StatelessWidget {
     if (can) {
       return Scaffold(
         body: ListView.builder(
+          padding: EdgeInsets.zero,
           shrinkWrap: true,
           itemCount: data_user.datas.length,
           itemBuilder: (context, index) {
@@ -39,8 +40,9 @@ class Following extends StatelessWidget {
       );
     } else {
       return Scaffold(
-        appBar: SimpleAppBar(context, "Following(134"),
+        appBar: SimpleAppBar(context, "Following(134)"),
         body: ListView.builder(
+          padding: EdgeInsets.zero,
           shrinkWrap: true,
           itemCount: data_user.datas.length,
           itemBuilder: (context, index) {
