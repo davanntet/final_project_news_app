@@ -17,7 +17,7 @@ class _ExpireTimeState extends State<ExpireTime> {
       children: [
         Text(
           "Code will expire in",
-          style: Theme.of(context).textTheme.subtitle1,
+          style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(
           width: 5,

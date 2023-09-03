@@ -1,4 +1,3 @@
-import 'package:final_project_news_app/constraint/AppColors.dart';
 import 'package:final_project_news_app/constraint/AppThemeData.dart';
 import 'package:final_project_news_app/routes/Routers.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,7 +18,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
       ],
-      child:MainApp(),
+      child:const MainApp(),
       ) 
   );
 }

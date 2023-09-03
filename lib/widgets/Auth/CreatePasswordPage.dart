@@ -1,11 +1,8 @@
 // ignore: file_names
-
 import 'package:final_project_news_app/components/Form/FormInput.dart';
 import 'package:final_project_news_app/components/simple/simple_appbar.dart';
-import 'package:final_project_news_app/constraint/AppColors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../components/simple/show_message.dart';
 import '../../providers/auth_provider.dart';
 

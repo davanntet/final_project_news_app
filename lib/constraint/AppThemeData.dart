@@ -110,11 +110,9 @@ ThemeData AppThemeData(BuildContext context) {
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(Colors.transparent),
         padding: MaterialStateProperty.all(EdgeInsets.zero),
-// minimumSize: MaterialStateProperty.all(Size.zero),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         elevation: MaterialStateProperty.all(0),
-        overlayColor:
-            MaterialStateProperty.all(AppColors.blue.withOpacity(0.1)),
+        overlayColor:MaterialStateProperty.all(Colors.transparent),
       ),
     ),
   );

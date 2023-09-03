@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                     ),
                     //slide
                     SizedBox(
-                      height:300,
+                      height:MediaQuery.sizeOf(context).width *  0.7+10,
                       child: ListView.builder(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         shrinkWrap: true,

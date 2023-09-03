@@ -1,7 +1,6 @@
 import 'package:final_project_news_app/components/simple/simple_appbar.dart';
 import 'package:final_project_news_app/models/virtualdata/data_user.dart';
 import 'package:flutter/material.dart';
-
 import '../../components/search/trending.dart';
 
 class TredingTopic extends StatelessWidget {

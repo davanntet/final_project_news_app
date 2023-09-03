@@ -33,10 +33,17 @@ class HomeSlider extends StatelessWidget {
               ),
             ),
           ),
-          Text(
-            datas.title,
-            style: Theme.of(context).textTheme.labelSmall,
-            textAlign: TextAlign.start,
+          SizedBox(
+            height: 60,
+            width: double.infinity,
+            child: Text(
+              datas.title,
+              style: Theme.of(context).textTheme.labelSmall,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              softWrap: true,
+              textAlign: TextAlign.start,
+            ),
           ),
           Row(
             children: [
